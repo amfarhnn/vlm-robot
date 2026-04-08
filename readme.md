@@ -4,13 +4,13 @@
 
 ## 📚 Research Papers & Resources
 
-| No. | Research Paper Name | 📄 Paper Link | 💻 GitHub Repo |
-|-----|--------------------|--------------|---------------|
-| 1 | [Paper Title 1] | [![Paper](https://img.shields.io/badge/View-Paper-blue?style=flat&logo=readthedocs)](PASTE_PAPER_LINK_HERE) | [![GitHub](https://img.shields.io/badge/View-Code-black?style=flat&logo=github)](PASTE_GITHUB_LINK_HERE) |
-| 2 | [Paper Title 2] | [![Paper](https://img.shields.io/badge/View-Paper-blue?style=flat&logo=readthedocs)](PASTE_PAPER_LINK_HERE) | [![GitHub](https://img.shields.io/badge/View-Code-black?style=flat&logo=github)](PASTE_GITHUB_LINK_HERE) |
-| 3 | [Paper Title 3] | [![Paper](https://img.shields.io/badge/View-Paper-blue?style=flat&logo=readthedocs)](PASTE_PAPER_LINK_HERE) | [![GitHub](https://img.shields.io/badge/View-Code-black?style=flat&logo=github)](PASTE_GITHUB_LINK_HERE) |
-| 4 | [Paper Title 4] | [![Paper](https://img.shields.io/badge/View-Paper-blue?style=flat&logo=readthedocs)](PASTE_PAPER_LINK_HERE) | [![GitHub](https://img.shields.io/badge/View-Code-black?style=flat&logo=github)](PASTE_GITHUB_LINK_HERE) |
-| 5 | [Paper Title 5] | [![Paper](https://img.shields.io/badge/View-Paper-blue?style=flat&logo=readthedocs)](PASTE_PAPER_LINK_HERE) | [![GitHub](https://img.shields.io/badge/View-Code-black?style=flat&logo=github)](PASTE_GITHUB_LINK_HERE) |
+| No. | Research Paper Name | Summary | 📄 Paper Link | 💻 GitHub Repo |
+|-----|--------------------|----------------------|--------------|---------------|
+| 1 | [Paper Title 1] | [Replace Summary here] | [![Paper](https://img.shields.io/badge/View-Paper-blue?style=flat&logo=readthedocs)](PASTE_PAPER_LINK_HERE) | [![GitHub](https://img.shields.io/badge/View-Code-black?style=flat&logo=github)](PASTE_GITHUB_LINK_HERE) |
+| 2 | [Paper Title 2] | [Replace Summary here] | [![Paper](https://img.shields.io/badge/View-Paper-blue?style=flat&logo=readthedocs)](PASTE_PAPER_LINK_HERE) | [![GitHub](https://img.shields.io/badge/View-Code-black?style=flat&logo=github)](PASTE_GITHUB_LINK_HERE) |
+| 3 | [Paper Title 3] | [Replace Summary here] | [![Paper](https://img.shields.io/badge/View-Paper-blue?style=flat&logo=readthedocs)](PASTE_PAPER_LINK_HERE) | [![GitHub](https://img.shields.io/badge/View-Code-black?style=flat&logo=github)](PASTE_GITHUB_LINK_HERE) |
+| 4 | [Paper Title 4] | [Replace Summary here] | [![Paper](https://img.shields.io/badge/View-Paper-blue?style=flat&logo=readthedocs)](PASTE_PAPER_LINK_HERE) | [![GitHub](https://img.shields.io/badge/View-Code-black?style=flat&logo=github)](PASTE_GITHUB_LINK_HERE) |
+| 5 | [Paper Title 5] | [Replace Summary here] | [![Paper](https://img.shields.io/badge/View-Paper-blue?style=flat&logo=readthedocs)](PASTE_PAPER_LINK_HERE) | [![GitHub](https://img.shields.io/badge/View-Code-black?style=flat&logo=github)](PASTE_GITHUB_LINK_HERE) |
 
 ---
 
