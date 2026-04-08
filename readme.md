@@ -1,4 +1,4 @@
-# 📌 Project Title: Prompt Engineering for Mobile Robot Navigation
+# Project Title: Prompt Engineering for Mobile Robot Navigation
 
 ---
 
