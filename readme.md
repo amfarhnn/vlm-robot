@@ -16,10 +16,6 @@
 | 8 | VLM‑Social‑Nav: Socially Aware Robot Navigation through Scoring (2025) | Employs a perception model (YOLO) to detect social entities and prompts a vision‑language model to generate social cost terms.  These costs supplement goal and obstacle costs to produce socially compliant trajectories; experiments show higher success and lower collision rates | [![Paper](https://img.shields.io/badge/View-Paper-blue?style=flat&logo=readthedocs)](https://socialnav2025.pages.dev/papers/VLM-Social-Nav-%20Socially%20Aware%20Robot%20Navigation%20through%20Scoring%20using%20Vision-Language%20Models.pdf#:~:text=generate%20guidance%20for%20socially%20compliant,most%20socially%20compliant%20navigation%20behavior) | [![GitHub](https://img.shields.io/badge/View-Code-black?style=flat&logo=github)](PASTE_GITHUB_LINK_HERE) |
 | 9 | LM-Nav: Robotic Navigation with Large Pre-Trained Models of Language, Vision, and Action | Combines three pre‑trained models—an LLM for extracting landmarks, a vision‑language model for grounding, and a visual navigation model—to follow instructions without language‑annotated training data.  LM‑Nav extracts landmarks from instructions, uses CLIP to ground them and employs ViNG to reach them; demonstrated long‑horizon navigation. | [![Paper](https://img.shields.io/badge/View-Paper-blue?style=flat&logo=readthedocs)](https://arxiv.org/abs/2207.04429) | [![GitHub](https://img.shields.io/badge/View-Code-black?style=flat&logo=github)](https://github.com/blazejosinski/lm_nav) |
 | 10 | [Paper Title 10] | [Replace Summary here] | [![Paper](https://img.shields.io/badge/View-Paper-blue?style=flat&logo=readthedocs)](PASTE_PAPER_LINK_HERE) | [![GitHub](https://img.shields.io/badge/View-Code-black?style=flat&logo=github)](PASTE_GITHUB_LINK_HERE) |
-
----
-
-## 📝 Notes
-- Replace `PASTE_PAPER_LINK_HERE` with actual paper URL (IEEE, arXiv, etc.)
-- Replace `PASTE_GITHUB_LINK_HERE` with repository link
-- Add/remove rows as needed
+| 11 | [Paper Title 10] | [Replace Summary here] | [![Paper](https://img.shields.io/badge/View-Paper-blue?style=flat&logo=readthedocs)](PASTE_PAPER_LINK_HERE) | [![GitHub](https://img.shields.io/badge/View-Code-black?style=flat&logo=github)](PASTE_GITHUB_LINK_HERE) |
+| 12 | [Paper Title 10] | [Replace Summary here] | [![Paper](https://img.shields.io/badge/View-Paper-blue?style=flat&logo=readthedocs)](PASTE_PAPER_LINK_HERE) | [![GitHub](https://img.shields.io/badge/View-Code-black?style=flat&logo=github)](PASTE_GITHUB_LINK_HERE) |
+| 13 | [Paper Title 10] | [Replace Summary here] | [![Paper](https://img.shields.io/badge/View-Paper-blue?style=flat&logo=readthedocs)](PASTE_PAPER_LINK_HERE) | [![GitHub](https://img.shields.io/badge/View-Code-black?style=flat&logo=github)](PASTE_GITHUB_LINK_HERE) |
