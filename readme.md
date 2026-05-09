@@ -63,6 +63,29 @@ The further research papers are organized around possible improvements to this b
 - `NaVid`, `Uni-NaVid`, and `NaVILA` are used to study the latest VLM and VLA navigation direction. These works move toward models that reason over vision, language, and action in a more integrated way.
 - `VLMnav` is used as the main prompt-engineering reference because it studies how a vision-language model can choose navigation actions through a question-answering formulation.
 
+## Methodology Notes
+
+The main methodology for this project is based on [`LM-Nav: Robotic Navigation with Large Pre-Trained Models of Language, Vision, and Action`](https://proceedings.mlr.press/v205/shah23b).
+
+`LM-Nav` provides a clear modular approach for language-guided robot navigation:
+
+1. use an LLM to extract landmark goals from natural language instructions
+2. use CLIP to ground the extracted landmarks in visual observations
+3. use a visual navigation model to execute movement toward the selected landmark
+
+This methodology is suitable as the baseline because it connects prompt engineering, language understanding, image-text grounding, and mobile robot navigation in one complete pipeline.
+
+Supporting methodology references:
+
+| Paper | Methodology Role | Link |
+|---|---|---|
+| LM-Nav: Robotic Navigation with Large Pre-Trained Models of Language, Vision, and Action | Main baseline methodology for landmark extraction, visual grounding, and navigation execution. | [Paper](https://proceedings.mlr.press/v205/shah23b) |
+| VLMnav: End-to-End Navigation with Vision Language Models | Prompt-engineering methodology for choosing robot navigation actions through a VLM question-answering formulation. | [Paper](https://arxiv.org/abs/2411.05755) |
+| VLMaps: Visual Language Maps for Robot Navigation | Spatial grounding methodology using open-vocabulary visual-language maps. | [Project](https://vlmaps.github.io/) |
+| HOV-SG: Hierarchical Open-Vocabulary 3D Scene Graphs for Language-Grounded Robot Navigation | Spatial reasoning methodology using hierarchical 3D scene graphs. | [Project](https://hovsg.github.io/) |
+| ViNT: A Foundation Model for Visual Navigation | Navigation model methodology for stronger visual navigation execution. | [Paper](https://proceedings.mlr.press/v229/shah23a.html) |
+| NoMaD: Goal Masked Diffusion Policies for Navigation and Exploration | Navigation policy methodology using diffusion-based goal-directed navigation. | [Project](https://general-navigation-models.github.io/nomad/) |
+
 ## Research Direction
 
 This project will use `LM-Nav` as the main reference for understanding:
