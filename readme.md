@@ -48,6 +48,21 @@ The papers below are useful for studying how `LM-Nav` can be extended or improve
 | [VLMnav: End-to-End Navigation with Vision Language Models](https://arxiv.org/abs/2411.05755) | Prompt-based action selection | Frames navigation as VLM question answering, which is closely related to prompt engineering for robot decisions. |
 | [VLM-Nav: Mapless UAV Navigation Using Monocular Vision Driven by Vision-Language Models](https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0345778) | Mapless VLM navigation | Explores recent VLM-based navigation for UAVs using monocular vision and zero-shot reasoning. |
 
+## Research Roadmap
+
+This project treats `LM-Nav` as the baseline system design. Its central pipeline is:
+
+1. an LLM extracts landmarks from a natural language instruction
+2. CLIP grounds those landmarks in visual observations
+3. a navigation model executes movement toward the grounded goals
+
+The further research papers are organized around possible improvements to this baseline:
+
+- `VLMaps` and `HOV-SG` are used to study stronger spatial grounding. These methods improve how language is connected to maps, objects, rooms, and 3D scene structure.
+- `ViNT` and `NoMaD` are used to study stronger navigation and action models. These methods provide more capable visual navigation backbones that could replace or extend the execution component in `LM-Nav`.
+- `NaVid`, `Uni-NaVid`, and `NaVILA` are used to study the latest VLM and VLA navigation direction. These works move toward models that reason over vision, language, and action in a more integrated way.
+- `VLMnav` is used as the main prompt-engineering reference because it studies how a vision-language model can choose navigation actions through a question-answering formulation.
+
 ## Research Direction
 
 This project will use `LM-Nav` as the main reference for understanding:
