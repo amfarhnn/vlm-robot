@@ -74,21 +74,21 @@ The further research papers are organized around possible improvements to this b
 
 The reviewed papers do not all use the same hardware. Some are real-robot systems, while others mainly evaluate navigation models using simulators, image streams, or action-selection frameworks.
 
-| Paper | Hardware or Platform Reported | Main Sensor / Input |
-|---|---|---|
-| `LM-Nav` | Clearpath Jackal UGV | Front/rear RGB cameras, GPS, wheel encoders, IMU |
-| `VLMaps` | Toyota HSR and simulation environments | RGB-D images, camera poses, RTAB-Map |
-| `HOV-SG` | Boston Dynamics Spot | Azure Kinect RGB-D camera and 3D LiDAR |
-| `ViNT` | Multiple robots including LoCoBot, Vizbot, Unitree Go1, and Clearpath Jackal | RGB/fisheye camera observations |
-| `NoMaD` | LoCoBot real-world experiments | RGB observation history; suitable for onboard compute such as Jetson Orin |
-| `NaVid` | Simulation and real-world navigation experiments | Monocular RGB video stream |
-| `Uni-NaVid` | Simulation and real-world navigation experiments | Egocentric RGB video stream |
-| `NaVILA` | Unitree Go2 and Unitree H1 legged robots | RGB video frames and LiDAR-based locomotion sensing |
-| `VLN-Zero` | Unitree Go2 real-robot demonstration | Camera, IMU/odometry, RealSense D456 RGB-D camera |
-| `VLMnav` | VLM-based navigation action-selection framework | Visual observations and action-choice prompts |
-| `VLM-Nav` | AirSim UAV simulation | Monocular RGB, zero-shot depth estimation, distance sensors, heading angle |
+| Paper | Hardware or Platform Reported | Board / Compute Reported | Main Sensor / Input |
+|---|---|---|---|
+| `LM-Nav` | Clearpath Jackal UGV | Exact onboard computer board not stated; VNM runs onboard; LLM/VLM queries are pre-computed on a remote workstation | Front and rear RGB cameras with 170-degree FOV, GPS, wheel encoders, 6-DoF IMU |
+| `VLMaps` | Simulation environments and real robot demonstrations; Toyota HSR is acknowledged in project materials | Exact board not stated | RGB-D image stream, camera pose/odometry, RGB-D SLAM / RTAB-Map |
+| `HOV-SG` | Boston Dynamics Spot in a real multi-floor building; Habitat-Sim for simulation | Exact board not stated | Calibrated Azure Kinect RGB-D camera and 3D LiDAR |
+| `ViNT` | Multiple robots including LoCoBot, Vizbot, Unitree Go1, and Clearpath Jackal | Official deployment code was tested on LoCoBot with NVIDIA Jetson Orin Nano | RGB/fisheye camera observations; some datasets use odometry |
+| `NoMaD` | LoCoBot real-world experiments | Paper notes suitability for lower-power onboard compute such as NVIDIA Jetson Orin; official deployment stack follows the ViNT/GNM robot setup | RGB observation history and optional goal image |
+| `NaVid` | Simulation and real-world navigation experiments | Exact robot board not stated | Monocular RGB video stream only; no map, odometer, or depth input |
+| `Uni-NaVid` | Unitree Go2 robotic dog for real-world deployment | Remote server with NVIDIA A100 GPU; robot communicates through portable Wi-Fi | RealSense D455 RGB camera at 640 x 480, 90-degree HFOV; Unitree LiDAR-L1 for local motion planning |
+| `NaVILA` | Legged robot demonstrations including Unitree Go2 and humanoid platforms; Isaac Sim / Isaac Lab benchmarks | VLA runs through a server-based pipeline; exact server board/GPU not stated in the project summary | RGB video frames for VLA; LiDAR/height-map and proprioception for low-level locomotion |
+| `VLN-Zero` | Unitree Go2 quadruped in an apartment demonstration; Habitat-Sim for benchmark evaluation | Compute with API access to a VLM; exact onboard board not stated | Intel RealSense D456 RGB-D camera, camera/IMU/odometry, scene-graph map |
+| `VLMnav` | Habitat/ObjectNav/GOAT-style simulated embodied agent | VLM inference through API/model calls; no physical robot board reported | RGB-D image, pose, voxel map, action-choice visual prompt |
+| `VLM-Nav` | AirSim multirotor UAV simulation | Simulation PC / AirSim environment; physical flight controller board not reported | Monocular RGB image, zero-shot depth estimation, left/right distance sensors, relative heading angle |
 
-For this FYP, the most realistic hardware direction is an RGB-camera-based mobile robot or a simulator/image-based setup. RGB-D sensors can be considered later if the project expands toward spatial mapping.
+For this FYP, the most realistic hardware direction is an RGB-camera-based mobile robot or a simulator/image-based setup. If a physical prototype is required, a practical setup is a wheeled mobile robot base, a front-facing USB/RGB camera, a laptop or workstation for LLM/VLM inference, and optionally an NVIDIA Jetson Orin Nano if onboard visual navigation is needed. RGB-D sensors such as RealSense or Azure Kinect can be considered later if the project expands toward spatial mapping.
 
 ## Methodology Notes
 
