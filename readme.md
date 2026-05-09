@@ -1,3 +1,5 @@
+![Header](Header.jpg)
+
 # Prompt Engineering for Mobile Robot Navigation
 
 `Prompt Engineering for Mobile Robot Navigation` is a research project focused on language-guided mobile robot navigation using large pre-trained models.
