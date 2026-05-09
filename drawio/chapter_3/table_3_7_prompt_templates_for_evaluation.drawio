@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mxfile host="app.diagrams.net" modified="2026-05-09T00:00:00.000Z" agent="Codex" version="24.7.17">
+  <diagram id="table_3_7_prompt_templates_for_evaluation" name="Table 3.7: Prompt Templates for Evaluation">
+    <mxGraphModel dx="1600" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1216" pageHeight="800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" value="Table 3.7: Prompt Templates for Evaluation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="1136" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="Prompt Type" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="40" y="116" width="258" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="4" value="Description" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="298" y="116" width="600" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="5" value="Expected Output" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="898" y="116" width="278" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="6" value="Baseline landmark prompt" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="40" y="162" width="258" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="7" value="Extracts only landmark names from the instruction" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="298" y="162" width="600" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8" value="Ordered landmark list" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="898" y="162" width="278" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="9" value="Structured output prompt" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="40" y="202" width="258" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="10" value="Requires a fixed schema for landmarks, relations, and constraints" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="298" y="202" width="600" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="11" value="JSON-style navigation plan" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="898" y="202" width="278" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="12" value="Spatial reasoning prompt" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="40" y="242" width="258" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="13" value="Emphasizes object relations and route order" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="298" y="242" width="600" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="14" value="Landmarks with relation labels" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="898" y="242" width="278" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="15" value="Safety-aware prompt" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="40" y="282" width="258" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="16" value="Extracts obstacles, forbidden areas, or caution instructions" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="298" y="282" width="600" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="17" value="Goal and safety constraints" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="898" y="282" width="278" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="18" value="VLMnav-style question prompt" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="40" y="322" width="258" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="19" value="Asks a VLM to select the best action from choices" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="298" y="322" width="600" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="20" value="Action label with reason" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="898" y="322" width="278" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

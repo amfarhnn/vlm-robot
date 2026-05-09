@@ -1,0 +1,49 @@
+<mxfile host="Electron" agent="Codex">
+  <diagram id="table_2_5_prompt_based_and_zero_shot_navigation_papers" name="Table 2.5: Prompt-based and zero-shot navigation papers">
+    <mxGraphModel dx="1230" dy="731" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1169" pageHeight="800" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontStyle=1;fontSize=16;labelBackgroundColor=none;fontColor=#FFFFFF;align=center;" value="Table 2.5: Prompt-based and zero-shot navigation papers" vertex="1">
+          <mxGeometry height="58" width="1026" x="40" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="3" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fillColor=#003366;strokeColor=#000000;fontStyle=1;fontSize=12;labelBackgroundColor=none;fontColor=#FFFFFF;fillStyle=solid;" value="Paper" vertex="1">
+          <mxGeometry height="46" width="140" x="40" y="116" as="geometry" />
+        </mxCell>
+        <mxCell id="4" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fillColor=#006633;strokeColor=#000000;fontStyle=1;fontSize=12;labelBackgroundColor=none;fontColor=#ffffff;" value="Main Contribution" vertex="1">
+          <mxGeometry height="46" width="458" x="180" y="116" as="geometry" />
+        </mxCell>
+        <mxCell id="5" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fillColor=#666600;strokeColor=#000000;fontStyle=1;fontSize=12;labelBackgroundColor=none;fontColor=#ffffff;" value="Relevance to This Project" vertex="1">
+          <mxGeometry height="46" width="428" x="638" y="116" as="geometry" />
+        </mxCell>
+        <mxCell id="6" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;strokeColor=#000000;fontSize=11;fillColor=#003366;labelBackgroundColor=none;fontColor=#FFFFFF;fillStyle=solid;" value="`VLMnav`" vertex="1">
+          <mxGeometry height="40" width="140" x="40" y="162" as="geometry" />
+        </mxCell>
+        <mxCell id="7" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;strokeColor=#000000;fontSize=11;fillColor=#006633;labelBackgroundColor=none;fontColor=#ffffff;" value="Navigation as VLM question answering" vertex="1">
+          <mxGeometry height="40" width="458" x="180" y="162" as="geometry" />
+        </mxCell>
+        <mxCell id="8" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;strokeColor=#000000;fontSize=11;fillColor=#666600;labelBackgroundColor=none;fontColor=#ffffff;" value="Main prompt-engineering improvement reference" vertex="1">
+          <mxGeometry height="40" width="428" x="638" y="162" as="geometry" />
+        </mxCell>
+        <mxCell id="9" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;strokeColor=#000000;fontSize=11;fillColor=#003366;labelBackgroundColor=none;fontColor=#FFFFFF;fillStyle=solid;" value="`VLN-Zero`" vertex="1">
+          <mxGeometry height="40" width="140" x="40" y="202" as="geometry" />
+        </mxCell>
+        <mxCell id="10" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;strokeColor=#000000;fontSize=11;fillColor=#006633;labelBackgroundColor=none;fontColor=#ffffff;" value="Zero-shot VLM planning with memory and caching" vertex="1">
+          <mxGeometry height="40" width="458" x="180" y="202" as="geometry" />
+        </mxCell>
+        <mxCell id="11" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;strokeColor=#000000;fontSize=11;fillColor=#666600;labelBackgroundColor=none;fontColor=#ffffff;" value="Supports efficient exploration and reuse" vertex="1">
+          <mxGeometry height="40" width="428" x="638" y="202" as="geometry" />
+        </mxCell>
+        <mxCell id="12" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;strokeColor=#000000;fontSize=11;fillColor=#003366;labelBackgroundColor=none;fontColor=#FFFFFF;fillStyle=solid;" value="`VLM-Nav`" vertex="1">
+          <mxGeometry height="40" width="140" x="40" y="242" as="geometry" />
+        </mxCell>
+        <mxCell id="13" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;strokeColor=#000000;fontSize=11;fillColor=#006633;labelBackgroundColor=none;fontColor=#ffffff;" value="Mapless UAV navigation with VLM reasoning" vertex="1">
+          <mxGeometry height="40" width="458" x="180" y="242" as="geometry" />
+        </mxCell>
+        <mxCell id="14" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;strokeColor=#000000;fontSize=11;fillColor=#666600;labelBackgroundColor=none;fontColor=#ffffff;" value="Recent supporting example of VLM navigation" vertex="1">
+          <mxGeometry height="40" width="428" x="638" y="242" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mxfile host="app.diagrams.net" modified="2026-05-09T00:00:00.000Z" agent="Codex" version="24.7.17">
+  <diagram id="table_3_4_instruction_categories" name="Table 3.4: Instruction Categories">
+    <mxGraphModel dx="1600" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1183" pageHeight="800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" value="Table 3.4: Instruction Categories" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="1103" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="Category" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="40" y="116" width="263" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="4" value="Example Instruction" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="303" y="116" width="471" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="5" value="Purpose" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="774" y="116" width="369" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="6" value="Single landmark" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="40" y="162" width="263" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="7" value="&quot;Go to the door.&quot;" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="303" y="162" width="471" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8" value="Test basic landmark extraction" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="774" y="162" width="369" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="9" value="Landmark with relation" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="40" y="202" width="263" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="10" value="&quot;Go to the chair near the table.&quot;" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="303" y="202" width="471" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="11" value="Test spatial relation extraction" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="774" y="202" width="369" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="12" value="Ordered route" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="40" y="242" width="263" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="13" value="&quot;Pass the sofa, then move toward the window.&quot;" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="303" y="242" width="471" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="14" value="Test sequence extraction" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="774" y="242" width="369" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="15" value="Ambiguous instruction" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="40" y="282" width="263" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="16" value="&quot;Go to the nearest exit.&quot;" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="303" y="282" width="471" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="17" value="Test reasoning and uncertainty handling" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="774" y="282" width="369" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="18" value="Constraint-based instruction" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="40" y="322" width="263" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="19" value="&quot;Move toward the desk but avoid the crowded area.&quot;" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="303" y="322" width="471" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="20" value="Test constraint extraction" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="774" y="322" width="369" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="21" value="Action-oriented instruction" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="40" y="362" width="263" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="22" value="&quot;Turn left and move forward until the hallway.&quot;" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="303" y="362" width="471" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="23" value="Test action or route interpretation" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="774" y="362" width="369" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

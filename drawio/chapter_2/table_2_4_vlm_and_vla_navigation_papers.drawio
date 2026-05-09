@@ -1,0 +1,49 @@
+<mxfile host="Electron" agent="Codex">
+  <diagram id="table_2_4_vlm_and_vla_navigation_papers" name="Table 2.4: VLM and VLA navigation papers">
+    <mxGraphModel dx="1347" dy="801" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1169" pageHeight="800" background="#ffffff" math="0" shadow="1" adaptiveColors="simple">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontStyle=1;fontSize=16;labelBackgroundColor=none;align=center;fillColor=#333333;" value="Table 2.4: VLM and VLA navigation papers" vertex="1">
+          <mxGeometry height="58" width="1054" x="40" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="3" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fontStyle=1;fontSize=12;labelBackgroundColor=none;fillColor=#006666;" value="Paper" vertex="1">
+          <mxGeometry height="46" width="140" x="40" y="116" as="geometry" />
+        </mxCell>
+        <mxCell id="4" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fontStyle=1;fontSize=12;labelBackgroundColor=none;fillColor=#666600;" value="Main Direction" vertex="1">
+          <mxGeometry height="46" width="331" x="180" y="116" as="geometry" />
+        </mxCell>
+        <mxCell id="5" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fontStyle=1;fontSize=12;labelBackgroundColor=none;fillColor=#4C0099;" value="Relevance to This Project" vertex="1">
+          <mxGeometry height="46" width="583" x="511" y="116" as="geometry" />
+        </mxCell>
+        <mxCell id="6" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fontSize=11;labelBackgroundColor=none;fillColor=#006666;" value="`NaVid`" vertex="1">
+          <mxGeometry height="40" width="140" x="40" y="162" as="geometry" />
+        </mxCell>
+        <mxCell id="7" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fontSize=11;labelBackgroundColor=none;fillColor=#666600;" value="Video-based VLM next-step planning" vertex="1">
+          <mxGeometry height="40" width="331" x="180" y="162" as="geometry" />
+        </mxCell>
+        <mxCell id="8" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fontSize=11;labelBackgroundColor=none;fillColor=#4C0099;" value="Supports VLM-based navigation reasoning" vertex="1">
+          <mxGeometry height="40" width="583" x="511" y="162" as="geometry" />
+        </mxCell>
+        <mxCell id="9" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fontSize=11;labelBackgroundColor=none;fillColor=#006666;" value="`Uni-NaVid`" vertex="1">
+          <mxGeometry height="40" width="140" x="40" y="202" as="geometry" />
+        </mxCell>
+        <mxCell id="10" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fontSize=11;labelBackgroundColor=none;fillColor=#666600;" value="Unified VLA navigation tasks" vertex="1">
+          <mxGeometry height="40" width="331" x="180" y="202" as="geometry" />
+        </mxCell>
+        <mxCell id="11" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fontSize=11;labelBackgroundColor=none;fillColor=#4C0099;" value="Represents latest integrated model direction" vertex="1">
+          <mxGeometry height="40" width="583" x="511" y="202" as="geometry" />
+        </mxCell>
+        <mxCell id="12" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fontSize=11;labelBackgroundColor=none;fillColor=#006666;" value="`NaVILA`" vertex="1">
+          <mxGeometry height="40" width="140" x="40" y="242" as="geometry" />
+        </mxCell>
+        <mxCell id="13" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fontSize=11;labelBackgroundColor=none;fillColor=#666600;" value="VLA navigation for legged robots" vertex="1">
+          <mxGeometry height="40" width="331" x="180" y="242" as="geometry" />
+        </mxCell>
+        <mxCell id="14" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fontSize=11;labelBackgroundColor=none;fillColor=#4C0099;" value="Shows connection between VLA reasoning and real robot movement" vertex="1">
+          <mxGeometry height="40" width="583" x="511" y="242" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

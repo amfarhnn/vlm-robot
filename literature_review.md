@@ -26,24 +26,7 @@ Language-guided navigation therefore requires three main abilities. First, the s
 
 **Figure 2.1: General language-guided navigation process**
 
-```text
-Natural Language Instruction
-        |
-        v
-Language Understanding
-        |
-        v
-Landmark, Goal, or Plan Representation
-        |
-        v
-Vision-Language Grounding
-        |
-        v
-Navigation Goal or Action
-        |
-        v
-Robot Motion Execution
-```
+![Figure 2.1: General language-guided navigation process](drawio/chapter_2/figure_2_1_general_language_guided_navigation_process.jpg)
 
 The main challenge is that language does not directly correspond to robot motion. An instruction such as "go past the sofa and stop near the door" contains an ordered route, two landmarks, a stopping condition, and an implicit spatial relation. A robot cannot execute this command unless the instruction is converted into an intermediate representation that can be grounded visually and passed to a navigation system.
 
@@ -108,24 +91,7 @@ This pipeline is shown in Figure 2.2.
 
 **Figure 2.2: LM-Nav baseline pipeline**
 
-```text
-Language Instruction
-        |
-        v
-GPT-3 Landmark Extraction
-        |
-        v
-Landmark Sequence
-        |
-        v
-CLIP Visual Grounding
-        |
-        v
-Selected Visual Goal
-        |
-        v
-ViNG Navigation Execution
-```
+![Figure 2.2: LM-Nav baseline pipeline](drawio/chapter_2/figure_2_2_lm_nav_baseline_pipeline.jpg)
 
 ### 2.5.2 Methodological Contribution
 
@@ -361,18 +327,7 @@ The relationship between these papers and the project is summarized in Figure 2.
 
 **Figure 2.3: Positioning of related works around LM-Nav**
 
-```text
-                         VLM/VLA Navigation
-                  NaVid, Uni-NaVid, NaVILA
-                                |
-                                v
-Spatial Grounding -----> LM-Nav Baseline -----> Navigation Execution
-VLMaps, HOV-SG          GPT-3 + CLIP + ViNG     ViNT, NoMaD
-                                |
-                                v
-                    Prompt-Based Action Selection
-                              VLMnav
-```
+![Figure 2.3: Positioning of related works around LM-Nav](drawio/chapter_2/figure_2_3_positioning_of_related_works_around_lm_nav.jpg)
 
 ## 2.11 Research Gap and Motivation
 

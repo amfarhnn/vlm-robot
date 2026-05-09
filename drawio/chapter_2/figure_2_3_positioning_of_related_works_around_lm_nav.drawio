@@ -1,0 +1,37 @@
+<mxfile host="Electron" agent="Codex">
+  <diagram id="figure_2_3_positioning_of_related_works_around_lm_nav" name="Figure 2.3: Positioning of related works around LM-Nav">
+    <mxGraphModel dx="1488" dy="885" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1600" pageHeight="1000" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontSize=14;labelBackgroundColor=none;fontColor=#FFFFFF;" value="VLM/VLA Navigation&#xa;NaVid, Uni-NaVid, NaVILA" vertex="1">
+          <mxGeometry height="90" width="360" x="550" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#a20025;strokeColor=#6F0000;fontSize=14;labelBackgroundColor=none;fontColor=#ffffff;" value="Spatial Grounding&#xa;VLMaps, HOV-SG" vertex="1">
+          <mxGeometry height="90" width="300" x="120" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;strokeColor=#005700;fontStyle=1;fontSize=15;labelBackgroundColor=none;fontColor=#ffffff;" value="LM-Nav Baseline&#xa;GPT-3 + CLIP + ViNG" vertex="1">
+          <mxGeometry height="90" width="360" x="550" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6a00ff;strokeColor=#3700CC;fontSize=14;labelBackgroundColor=none;fontColor=#ffffff;" value="Navigation Execution&#xa;ViNT, NoMaD" vertex="1">
+          <mxGeometry height="90" width="300" x="1040" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#76608a;strokeColor=#432D57;fontSize=13;labelBackgroundColor=none;fontColor=#ffffff;" value="Prompt-Based Action Selection&#xa;VLMnav" vertex="1">
+          <mxGeometry height="90" width="360" x="550" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="7" edge="1" parent="1" source="3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;labelBackgroundColor=none;strokeColor=#23445D;fontColor=default;" target="4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8" edge="1" parent="1" source="4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;labelBackgroundColor=none;strokeColor=#23445D;fontColor=default;" target="5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="9" edge="1" parent="1" source="2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;labelBackgroundColor=none;strokeColor=#23445D;fontColor=default;" target="4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="10" edge="1" parent="1" source="4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;labelBackgroundColor=none;strokeColor=#23445D;fontColor=default;" target="6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
