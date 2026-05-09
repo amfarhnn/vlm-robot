@@ -21,6 +21,13 @@ The goal of this project is to study how a robot can follow natural language nav
 |---|---|---|---|---|
 | LM-Nav: Robotic Navigation with Large Pre-Trained Models of Language, Vision, and Action | Dhruv Shah, Blazej Osinski, Brian Ichter, Sergey Levine | CoRL / PMLR 2023 | [Paper](https://proceedings.mlr.press/v205/shah23b) | [Code](https://github.com/blazejosinski/lm_nav) |
 
+## Project Documents
+
+| Document | Description |
+|---|---|
+| [Chapter 2 Literature Review](literature_review.md) | Formal literature review chapter covering `LM-Nav` and related papers. |
+| [Chapter 3 Methodology](chapter_3_methodology.md) | Formal methodology chapter following the university FYP chapter format. |
+
 ## Core Idea
 
 `LM-Nav` builds a navigation system from three major components:
