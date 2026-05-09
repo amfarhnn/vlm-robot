@@ -222,6 +222,8 @@ The implementation is mainly software-based. If a physical mobile robot is avail
 | Optional simulator | Test navigation decisions without physical hardware | Indoor navigation simulator |
 | Optional mobile robot | Test the full pipeline in a real environment | Wheeled mobile robot with camera |
 
+Based on the hardware review in Chapter 2, the proposed project does not need to reproduce the full hardware setup used by every reference paper. `LM-Nav` used a Clearpath Jackal with RGB cameras, GPS, wheel encoders, and an IMU; `VLMaps` and `HOV-SG` used RGB-D mapping sensors; while newer VLM/VLA papers such as `NaVid`, `Uni-NaVid`, and `VLMnav` show that navigation reasoning can be studied from RGB visual observations and language/action prompts. Therefore, the minimum practical setup for this FYP is a laptop or workstation, a curated set of indoor scene images or simulator views, and access to an LLM/VLM. If a physical prototype is available, the preferred hardware is a wheeled mobile robot with a front-facing RGB camera and optional odometry or IMU. RGB-D hardware such as RealSense or Azure Kinect is treated as an extension for spatial mapping, not as a compulsory requirement for the prompt-engineering prototype.
+
 ## 3.6 Prompt Engineering Design
 
 Prompt engineering is the main focus of this project. The prompt controls how the LLM or VLM interprets the navigation instruction and how it produces an output that can be used by the navigation pipeline.

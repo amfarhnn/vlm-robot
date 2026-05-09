@@ -70,6 +70,26 @@ The further research papers are organized around possible improvements to this b
 - `NaVid`, `Uni-NaVid`, and `NaVILA` are used to study the latest VLM and VLA navigation direction. These works move toward models that reason over vision, language, and action in a more integrated way.
 - `VLMnav` is used as the main prompt-engineering reference because it studies how a vision-language model can choose navigation actions through a question-answering formulation.
 
+## Hardware Summary
+
+The reviewed papers do not all use the same hardware. Some are real-robot systems, while others mainly evaluate navigation models using simulators, image streams, or action-selection frameworks.
+
+| Paper | Hardware or Platform Reported | Main Sensor / Input |
+|---|---|---|
+| `LM-Nav` | Clearpath Jackal UGV | Front/rear RGB cameras, GPS, wheel encoders, IMU |
+| `VLMaps` | Toyota HSR and simulation environments | RGB-D images, camera poses, RTAB-Map |
+| `HOV-SG` | Boston Dynamics Spot | Azure Kinect RGB-D camera and 3D LiDAR |
+| `ViNT` | Multiple robots including LoCoBot, Vizbot, Unitree Go1, and Clearpath Jackal | RGB/fisheye camera observations |
+| `NoMaD` | LoCoBot real-world experiments | RGB observation history; suitable for onboard compute such as Jetson Orin |
+| `NaVid` | Simulation and real-world navigation experiments | Monocular RGB video stream |
+| `Uni-NaVid` | Simulation and real-world navigation experiments | Egocentric RGB video stream |
+| `NaVILA` | Unitree Go2 and Unitree H1 legged robots | RGB video frames and LiDAR-based locomotion sensing |
+| `VLN-Zero` | Unitree Go2 real-robot demonstration | Camera, IMU/odometry, RealSense D456 RGB-D camera |
+| `VLMnav` | VLM-based navigation action-selection framework | Visual observations and action-choice prompts |
+| `VLM-Nav` | AirSim UAV simulation | Monocular RGB, zero-shot depth estimation, distance sensors, heading angle |
+
+For this FYP, the most realistic hardware direction is an RGB-camera-based mobile robot or a simulator/image-based setup. RGB-D sensors can be considered later if the project expands toward spatial mapping.
+
 ## Methodology Notes
 
 The main methodology for this project is based on [`LM-Nav: Robotic Navigation with Large Pre-Trained Models of Language, Vision, and Action`](https://proceedings.mlr.press/v205/shah23b).

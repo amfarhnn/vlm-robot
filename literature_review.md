@@ -335,6 +335,28 @@ The comparison shows that no single paper solves all aspects of prompt-engineere
 
 From a critical perspective, the papers can be divided into methods that are practical for immediate implementation and methods that are more suitable as future extensions. `LM-Nav` and `VLMnav` are most suitable for this project because both can be studied through prompt design, structured outputs, and image-based evaluation. `VLMaps` and `HOV-SG` provide stronger grounding, but they require mapping or scene-graph construction. `ViNT` and `NoMaD` improve execution, but they depend on navigation model deployment and training data. Therefore, the project should use `LM-Nav` as the baseline, use `VLMnav` as the main prompt-engineering comparison, and discuss the remaining methods as improvement directions.
 
+### 2.10.1 Hardware and Experimental Platforms in Related Works
+
+The reviewed papers use different levels of hardware, ranging from pure simulation to real mobile robots. This is important for the project because the selected methodology must be realistic for the available FYP resources. Table 2.7 summarizes the robot platforms and sensors reported by the related works.
+
+**Table 2.7: Hardware and experimental platforms used in related papers**
+
+| Paper | Robot Platform or Environment | Sensors / Hardware Inputs | Notes for This Project |
+|---|---|---|---|
+| `LM-Nav` | Clearpath Jackal UGV | 6-DoF IMU, GPS, wheel encoders, front and rear RGB cameras with 170-degree field of view; VNM runs on-board, while LLM/VLM queries are pre-computed on a remote workstation | Most relevant real-world baseline hardware. A simplified project can use RGB images and optional GPS/odometry. |
+| `VLMaps` | Habitat and AI2THOR simulators; real-world Toyota HSR mobile robot | RGB-D image sequences, camera poses, RGB-D SLAM using RTAB-Map | Useful if the project includes mapping. Requires RGB-D sensing or RGB-D dataset. |
+| `HOV-SG` | Boston Dynamics Spot robot for real-world multi-floor experiments; Habitat-Sim for simulation | Calibrated Azure Kinect RGB-D camera and 3D LiDAR | Strong spatial-grounding hardware, but more complex and expensive than needed for this FYP prototype. |
+| `ViNT` | Training data from TurtleBot2, Clearpath Jackal, Warthog, Spot, Yamaha Viking ATV, RC car, and cars; evaluation on LoCoBot, Vizbot, Unitree Go1, and Jackal | Mainly RGB/fisheye camera observations; wheel odometry used in some experiments | Shows that visual navigation models can generalize across many robots. Useful as a future navigation backbone. |
+| `NoMaD` | Real-world LoCoBot platform in indoor and outdoor experiments | RGB observations, including recent image history; compact model designed to run on lower-power onboard computers such as NVIDIA Jetson Orin | Relevant if the project later moves from prompt testing to onboard navigation execution. |
+| `NaVid` | Simulation benchmarks and real-world experiments | Monocular RGB video stream only; no map, odometer, or depth input required | Relevant because it reduces hardware requirements to an RGB camera, making it attractive for a low-cost prototype. |
+| `Uni-NaVid` | Simulation benchmarks and real-world deployment | Egocentric RGB video stream; model outputs low-level navigation actions | Similar to NaVid but broader in task coverage. Exact real-world robot hardware is less central than the RGB video input. |
+| `NaVILA` | Unitree Go2 and Unitree H1 legged robots; Isaac Sim / Isaac Lab benchmarks | RGB video frames for the VLA; Unitree Go2 LiDAR point cloud is converted into a height map for locomotion; low-level policy controls leg joint motors | Relevant mainly for legged robots, not the first choice for a wheeled mobile robot FYP prototype. |
+| `VLMnav` | Embodied navigation framework evaluated as VLM-based action selection | Visual observation and action-choice inputs; paper focuses on VLM policy design rather than a specific robot platform | Useful for prompt-engineering experiments because it can be studied without specialized robot hardware. |
+| `VLN-Zero` | Unitree Go2 quadruped robot for real-world demonstration; Habitat-style benchmark environments for evaluation | Camera, IMU/odometry, Intel RealSense D456 RGB-D camera for scene-graph construction | Useful as a planning and memory reference, especially if the project later includes scene-graph mapping. |
+| `VLM-Nav` | AirSim UAV simulation | Monocular RGB input, zero-shot depth estimation, VLM reasoning, UAV heading/action control | Relevant as a recent VLM navigation example, but the UAV domain differs from this mobile robot project. |
+
+From this comparison, the most realistic hardware direction for this project is an RGB-camera-based mobile robot or a simulation/image-based setup. `LM-Nav` uses a Clearpath Jackal with GPS, wheel encoders, IMU, and RGB cameras, but the main prompt-engineering part can be studied without the full robot. `NaVid`, `Uni-NaVid`, and `VLMnav` further support the idea that RGB visual observations and language instructions are enough for evaluating navigation reasoning. If the project later includes spatial mapping, then RGB-D hardware such as an Azure Kinect, RealSense, or another RGB-D camera would be useful, following the direction of `VLMaps` and `HOV-SG`.
+
 The relationship between these papers and the project is summarized in Figure 2.3.
 
 **Figure 2.3: Positioning of related works around LM-Nav**
@@ -368,7 +390,7 @@ Fifth, evaluation should include more than final navigation success. A prompt-en
 
 Based on these gaps, this project is motivated to study prompt engineering for an `LM-Nav`-style mobile robot navigation pipeline. The main research direction is to improve the extraction of structured navigation goals from natural language instructions and examine how those outputs can support visual grounding and navigation decision making.
 
-**Table 2.7: Research gap synthesis and project strategy**
+**Table 2.8: Research gap synthesis and project strategy**
 
 | Research Gap | Supporting Literature | Project Strategy |
 |---|---|---|
