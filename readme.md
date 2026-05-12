@@ -27,7 +27,7 @@ The goal of this project is to study how a robot can follow natural language nav
 
 | Document | Description |
 |---|---|
-| [Chapter 2 Literature Review](literature_review.md) | Formal literature review chapter covering `LM-Nav` and related papers. |
+| [Chapter 2 Literature Review](https://docs.google.com/document/d/1kwpJmBAQByh0q103gmgsgumgGNn6tCbL2_T7v8mcL6s/edit?usp=sharing) | Formal literature review chapter covering `LM-Nav` and related papers. |
 | [Chapter 3 Methodology](chapter_3_methodology.md) | Formal methodology chapter following the university FYP chapter format. |
 
 ## Core Idea
