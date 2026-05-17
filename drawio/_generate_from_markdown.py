@@ -203,165 +203,256 @@ def render_vertical_flow(name: str, steps: list[str], out_path: Path) -> None:
 
 
 def render_figure_2_3(name: str, out_path: Path) -> None:
-    builder = DrawioBuilder(name, page_width=1600, page_height=1000)
+    builder = DrawioBuilder(name, page_width=1700, page_height=1200)
     top = builder.add_vertex(
-        "VLM/VLA Navigation\nNaVid, Uni-NaVid, NaVILA",
+        "Advanced VLM/VLA Navigation\nNaVid, Uni-NaVid, NaVILA",
         VERTEX_STYLE,
-        550,
+        560,
         60,
-        360,
+        420,
         90,
     )
     left = builder.add_vertex(
-        "Spatial Grounding\nVLMaps, HOV-SG",
+        "Spatial Grounding Improvements\nVLMaps, HOV-SG",
         VERTEX_STYLE,
-        120,
+        80,
         300,
-        300,
+        360,
         90,
     )
     center = builder.add_vertex(
-        "LM-Nav Baseline\nGPT-3 + CLIP + ViNG",
+        "LM-Nav Baseline Architecture\nLanguage -> Visual Grounding -> Execution",
         "rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=15;",
-        550,
+        560,
         300,
-        360,
-        90,
+        420,
+        100,
     )
     right = builder.add_vertex(
-        "Navigation Execution\nViNT, NoMaD",
+        "Navigation Execution Improvements\nViNT, NoMaD",
         VERTEX_STYLE,
-        1040,
+        1110,
         300,
-        300,
+        360,
         90,
     )
-    bottom = builder.add_vertex(
+    prompt = builder.add_vertex(
         "Prompt-Based Action Selection\nVLMnav",
         NOTE_STYLE,
-        550,
-        540,
-        360,
+        560,
+        520,
+        420,
+        90,
+    )
+    prototype = builder.add_vertex(
+        "Low-Cost FYP Prototype\nRDK X5 + STM32 Motor Control + ESP32 Ultrasonic Sensing + USB Webcam",
+        "rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=15;",
+        560,
+        710,
+        420,
+        110,
+    )
+    action = builder.add_vertex(
+        "Simple Indoor Action Set\nmove_forward, turn_left, turn_right, stop, search",
+        NOTE_STYLE,
+        560,
+        920,
+        420,
         90,
     )
     builder.add_edge(left, center)
     builder.add_edge(center, right)
     builder.add_edge(top, center)
-    builder.add_edge(center, bottom)
+    builder.add_edge(center, prompt)
+    builder.add_edge(prompt, prototype)
+    builder.add_edge(prototype, action)
     builder.write(out_path)
 
 
 def render_figure_3_1(name: str, out_path: Path) -> None:
-    builder = DrawioBuilder(name, page_width=1400, page_height=1800)
-    literature = builder.add_vertex("Literature Review", VERTEX_STYLE, 360, 40, 300, 60)
-    baseline = builder.add_vertex(
-        "Problem Definition and\nBaseline Selection",
+    builder = DrawioBuilder(name, page_width=1500, page_height=1900)
+    hardware = builder.add_vertex(
+        "Prepare Low-Cost\nRobot Hardware",
         VERTEX_STYLE,
         360,
-        130,
-        300,
+        40,
+        330,
         70,
     )
-    instruction = builder.add_vertex(
-        "Navigation Instruction\nPreparation",
+    jetson = builder.add_vertex(
+        "Set Up RDK X5,\nWebcam, Python, and OpenCV",
         VERTEX_STYLE,
         360,
-        230,
-        300,
+        140,
+        330,
         70,
     )
-    prompt = builder.add_vertex("Prompt Template Design", VERTEX_STYLE, 360, 330, 300, 60)
-    extraction = builder.add_vertex(
-        "Landmark and Plan Extraction",
+    esp32 = builder.add_vertex(
+        "Set Up STM32 Motor Control\nand ESP32 Ultrasonic Sensing",
         VERTEX_STYLE,
         360,
-        420,
-        300,
+        240,
+        330,
+        80,
+    )
+    prompt = builder.add_vertex(
+        "Create Prompt Templates",
+        VERTEX_STYLE,
+        360,
+        340,
+        330,
         60,
     )
-    output_valid = builder.add_vertex(
-        "Is the output valid?",
-        DECISION_STYLE,
-        400,
-        520,
-        220,
-        100,
+    prompt_test = builder.add_vertex(
+        "Test Prompt Output with\nSample Instructions",
+        VERTEX_STYLE,
+        360,
+        430,
+        330,
+        70,
+    )
+    camera = builder.add_vertex(
+        "Capture Webcam Image",
+        VERTEX_STYLE,
+        360,
+        530,
+        330,
+        60,
     )
     grounding = builder.add_vertex(
-        "Vision-Language Grounding",
+        "Visual Grounding or\nAction Selection",
         VERTEX_STYLE,
         360,
-        670,
-        300,
-        60,
-    )
-    target_grounded = builder.add_vertex(
-        "Is the target grounded?",
-        DECISION_STYLE,
-        400,
-        770,
-        220,
-        100,
-    )
-    selection = builder.add_vertex(
-        "Navigation Goal or\nAction Selection",
-        VERTEX_STYLE,
-        360,
-        920,
-        300,
+        620,
+        330,
         70,
+    )
+    valid = builder.add_vertex(
+        "Is the output valid\nand confident?",
+        DECISION_STYLE,
+        410,
+        740,
+        230,
+        110,
+    )
+    command = builder.add_vertex(
+        "Send Command to STM32\nRobot Control Board",
+        VERTEX_STYLE,
+        360,
+        900,
+        330,
+        70,
+    )
+    movement = builder.add_vertex(
+        "Execute Robot Movement",
+        VERTEX_STYLE,
+        360,
+        1010,
+        330,
+        60,
     )
     evaluation = builder.add_vertex(
-        "Testing, Evaluation, and Analysis",
+        "Evaluate Scenario Result",
         VERTEX_STYLE,
         360,
-        1020,
-        300,
+        1100,
+        330,
         60,
     )
-    discussion = builder.add_vertex(
-        "Prompt Improvement and\nFinal Discussion",
-        VERTEX_STYLE,
-        360,
-        1110,
-        300,
-        70,
-    )
-    refine = builder.add_vertex(
-        "Refine prompt template\nand repeat extraction",
+    stop = builder.add_vertex(
+        "Stop Robot, Log Failure,\nand Refine Prompt or Grounding",
         NOTE_STYLE,
-        770,
-        520,
-        260,
-        90,
-    )
-    expand = builder.add_vertex(
-        "Expand text query or\nreview candidate observations",
-        NOTE_STYLE,
-        770,
-        780,
-        280,
-        90,
+        810,
+        750,
+        330,
+        100,
     )
 
     for source, target in [
-        (literature, baseline),
-        (baseline, instruction),
-        (instruction, prompt),
-        (prompt, extraction),
-        (extraction, output_valid),
-        (grounding, target_grounded),
-        (selection, evaluation),
-        (evaluation, discussion),
+        (hardware, jetson),
+        (jetson, esp32),
+        (esp32, prompt),
+        (prompt, prompt_test),
+        (prompt_test, camera),
+        (camera, grounding),
+        (grounding, valid),
+        (command, movement),
+        (movement, evaluation),
     ]:
         builder.add_edge(source, target)
 
-    builder.add_edge(output_valid, grounding, value="Yes")
-    builder.add_edge(target_grounded, selection, value="Yes")
-    builder.add_edge(output_valid, refine, value="No", style=FEEDBACK_EDGE_STYLE)
-    builder.add_edge(refine, prompt, style=FEEDBACK_EDGE_STYLE)
-    builder.add_edge(target_grounded, expand, value="No", style=FEEDBACK_EDGE_STYLE)
-    builder.add_edge(expand, grounding, style=FEEDBACK_EDGE_STYLE)
+    builder.add_edge(valid, command, value="Yes")
+    builder.add_edge(valid, stop, value="No", style=FEEDBACK_EDGE_STYLE)
+    builder.add_edge(stop, prompt, style=FEEDBACK_EDGE_STYLE)
+    builder.write(out_path)
+
+
+def render_placeholder_figure(name: str, out_path: Path, message: str) -> None:
+    builder = DrawioBuilder(name, page_width=1169, page_height=900)
+    builder.add_vertex(
+        name,
+        TABLE_TITLE_STYLE,
+        80,
+        60,
+        1000,
+        70,
+    )
+    builder.add_vertex(
+        message,
+        (
+            "rounded=1;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 8;"
+            "fillColor=#f8f9fa;strokeColor=#666666;fontSize=18;"
+        ),
+        120,
+        180,
+        920,
+        560,
+    )
+    builder.write(out_path)
+
+
+def render_figure_3_4(name: str, out_path: Path) -> None:
+    builder = DrawioBuilder(name, page_width=1700, page_height=1200)
+    battery = builder.add_vertex("4x 18650\nBattery Pack", VERTEX_STYLE, 680, 40, 300, 80)
+    switch = builder.add_vertex("Main Power\nSwitch and Fuse", VERTEX_STYLE, 680, 170, 300, 80)
+    motor_rail = builder.add_vertex("Motor Power Rail", NOTE_STYLE, 120, 340, 300, 80)
+    regulator = builder.add_vertex("Regulated 5 V\nSupply", NOTE_STYLE, 680, 340, 300, 80)
+    stm32 = builder.add_vertex("STM32 Robot\nControl Board", VERTEX_STYLE, 120, 500, 300, 90)
+    motors = builder.add_vertex("Four DC Motors\nand Wheels", VERTEX_STYLE, 120, 690, 300, 90)
+    rdk = builder.add_vertex("RDK X5\nHigh-Level Controller", VERTEX_STYLE, 680, 500, 300, 90)
+    webcam = builder.add_vertex("USB Webcam", VERTEX_STYLE, 500, 710, 260, 80)
+    esp32 = builder.add_vertex("ESP32\nUltrasonic Hub", VERTEX_STYLE, 1060, 500, 300, 90)
+    sensors = builder.add_vertex("Four Ultrasonic Sensors\nFront, Left, Right, Rear", VERTEX_STYLE, 1060, 710, 300, 90)
+    ground = builder.add_vertex(
+        "Common Ground Between RDK X5, ESP32, STM32 Board, Sensors, and Motor Driver",
+        (
+            "rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;"
+            "strokeColor=#666666;fontStyle=1;fontSize=14;"
+        ),
+        390,
+        930,
+        900,
+        80,
+    )
+
+    for source, target in [
+        (battery, switch),
+        (switch, motor_rail),
+        (switch, regulator),
+        (motor_rail, stm32),
+        (stm32, motors),
+        (regulator, rdk),
+        (regulator, esp32),
+        (rdk, webcam),
+        (esp32, sensors),
+    ]:
+        builder.add_edge(source, target)
+
+    builder.add_edge(rdk, esp32, value="USB/UART status")
+    builder.add_edge(rdk, stm32, value="USB/UART motor command")
+    builder.add_edge(stm32, ground, style=FEEDBACK_EDGE_STYLE)
+    builder.add_edge(rdk, ground, style=FEEDBACK_EDGE_STYLE)
+    builder.add_edge(esp32, ground, style=FEEDBACK_EDGE_STYLE)
     builder.write(out_path)
 
 
@@ -518,6 +609,20 @@ def main() -> None:
             render_figure_2_3(figure_name, output_path)
         elif number == "3.1":
             render_figure_3_1(figure_name, output_path)
+        elif number == "3.3":
+            render_placeholder_figure(
+                figure_name,
+                output_path,
+                "Insert Fusion 360 3D model image here.\n\nLeave this space for the final chassis render, including board, sensor, webcam, motor, and battery placement.",
+            )
+        elif number == "3.4":
+            render_figure_3_4(figure_name, output_path)
+        elif number == "3.5":
+            render_placeholder_figure(
+                figure_name,
+                output_path,
+                "Insert final circuit diagram picture here.\n\nLeave this space for the completed wiring diagram showing power, serial communication, ESP32 ultrasonic sensors, STM32 motor control, and common ground.",
+            )
         else:
             steps = [
                 line.strip()

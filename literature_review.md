@@ -4,380 +4,279 @@
 
 ## 2.1 Introduction
 
-This chapter reviews previous research related to `Prompt Engineering for Mobile Robot Navigation`. The project focuses on how natural language instructions can be transformed into navigation goals or actions for a mobile robot using large language models (LLMs), vision-language models (VLMs), and visual navigation models. The review is centered on `LM-Nav: Robotic Navigation with Large Pre-Trained Models of Language, Vision, and Action` by Shah et al. (2023a), which is used as the main baseline paper for this project.
+This chapter reviews literature related to `Prompt Engineering for Mobile Robot Navigation`. The project investigates how a mobile robot can receive a natural language instruction, extract useful navigation information, ground the instruction using visual input, and convert the result into simple movement commands. The work is positioned as a low-cost indoor Final Year Project (FYP) research prototype rather than an industry-level autonomous navigation system.
 
-Mobile robot navigation is traditionally solved using localization, mapping, planning, perception, and control. These methods are effective when the navigation goal is provided in a robot-friendly form, such as a coordinate, waypoint, map location, or goal image. However, human users usually communicate navigation goals in natural language. A user may say "go to the chair near the table," "pass the door and stop beside the window," or "move toward the hallway and turn left." These instructions require language understanding, visual grounding, spatial reasoning, and motion execution.
+The main baseline paper for this project is `LM-Nav: Robotic Navigation with Large Pre-Trained Models of Language, Vision, and Action` by Shah et al. (2023a). LM-Nav is important because it presents a modular architecture for language-guided navigation. Its pipeline separates the problem into language understanding, visual grounding, and navigation execution. This structure is suitable for this FYP because the same idea can be adapted into a simpler prototype using an RDK X5 development board with 8GB RAM, a ROS Robot Control Board V3.0 with STM32F103RCT6 for motor control, an ESP32 for ultrasonic obstacle sensing, an unbranded USB webcam, four ultrasonic sensors, four DC motors, a mobile robot chassis, and 18650 batteries.
 
-Recent progress in LLMs and VLMs has made natural language navigation more practical. LLMs can extract landmarks, infer intent, decompose instructions, and produce structured plans. VLMs can connect text concepts to visual observations. Visual navigation models can then execute movement toward a selected goal. This creates a new research direction in which robot navigation is not only a planning and control problem, but also a language grounding and prompt engineering problem.
+The project does not attempt to reproduce the complete hardware capability of LM-Nav or newer large-scale navigation systems. Instead, the project adapts the core research idea into a student-level implementation. A user may give instructions such as "Go to the door", "Find the signboard", or "Move toward the chair near the table". The system then uses prompt engineering to produce a structured navigation output, uses the webcam image for visual grounding or action selection, and sends a simple command such as `move_forward`, `turn_left`, `turn_right`, `stop`, or `search` to the robot.
 
-The literature in this chapter is organized around the `LM-Nav` pipeline. `LM-Nav` uses GPT-3 to extract landmarks from an instruction, CLIP to ground those landmarks in visual observations, and ViNG to navigate toward the selected visual goal (Shah et al., 2023a). This modular design is important because it shows that language-guided robot navigation can be built by composing pre-trained models without requiring a large language-annotated robot dataset.
+Several related works are reviewed to clarify the project scope. `VLMnav` is included as the main prompt and action-selection reference because it formulates navigation as a question-answering or action-choice task. `VLMaps` and `HOV-SG` are reviewed because they improve spatial grounding, but they require map construction, RGB-D sensing, or scene graph construction, so they are treated as future work rather than the main implementation. `ViNT` and `NoMaD` are reviewed as stronger navigation execution models, but they are not the main focus because this FYP emphasizes prompt engineering, visual grounding, and simple action control. More recent VLM and VLA navigation systems such as `NaVid`, `Uni-NaVid`, and `NaVILA` are also discussed as advanced research directions.
 
-Several later papers improve different parts of the `LM-Nav` idea. `VLMaps` and `HOV-SG` improve spatial grounding by using open-vocabulary maps and hierarchical scene graphs (Huang et al., 2023; Werby et al., 2024). `ViNT` and `NoMaD` improve the navigation execution layer (Shah et al., 2023b; Sridhar et al., 2023). `NaVid`, `Uni-NaVid`, and `NaVILA` represent newer VLM and vision-language-action (VLA) directions (Cheng et al., 2025; Zhang et al., 2024, 2026). `VLMnav` is especially relevant to prompt engineering because it formulates navigation as a question-answering task (Goetting et al., 2024). `VLN-Zero` and `VLM-Nav` provide additional perspectives on zero-shot navigation, memory, and mapless VLM reasoning (Bhatt et al., 2025; Sarker et al., 2026).
+The aim of this chapter is therefore not only to describe related papers, but also to critically compare their suitability for a low-cost indoor robot prototype.
 
-The purpose of this literature review is to identify the baseline method, compare related approaches, and define the research gap that motivates this project.
+## 2.2 Mobile Robot Navigation and Natural Language Instructions
 
-## 2.2 Mobile Robot Navigation and Human Language Interfaces
+Mobile robot navigation normally requires a robot to perceive its environment, decide where to move, and execute motion safely. Traditional navigation systems often rely on a map, localization, path planning, obstacle detection, and low-level motor control. These systems are effective when the goal is specified in a robot-readable form, such as a coordinate, waypoint, or selected map location. However, this interaction style is not natural for non-technical users.
 
-Mobile robot navigation requires a robot to move from one location to another while avoiding obstacles and maintaining safe behavior. In classical systems, the robot normally relies on a map, localization module, path planner, and controller. The user may provide the target as a coordinate or selected point on a map. This approach is useful in structured environments, but it is not always natural for non-technical users.
+Natural language provides a more intuitive interface. A user can describe a goal using objects, places, and relations, for example "go to the door", "find the signboard", or "move toward the chair near the table". These instructions are simple for humans, but they are difficult for robots because they contain semantic meaning that must be connected to the physical environment.
 
-Natural language provides a more human-centered interface. Instead of giving a coordinate, a user can describe a target or route using words. This is especially useful in indoor service robots, mobile assistants, warehouse robots, inspection robots, and educational robotics. However, language is difficult for robots because it is often ambiguous and context-dependent. The meaning of "the chair near the table" depends on what the robot can see and how the objects are arranged in the environment.
-
-Language-guided navigation therefore requires three main abilities. First, the system must understand the instruction. Second, it must ground the instruction in the physical environment. Third, it must execute the navigation behavior. These abilities are shown in Figure 2.1.
+Language-guided navigation therefore requires three main capabilities. First, the robot must understand the user's instruction. Second, it must ground the instruction in visual input or spatial knowledge. Third, it must convert the result into movement. This general process is shown in Figure 2.1.
 
 **Figure 2.1: General language-guided navigation process**
 
-![Figure 2.1: General language-guided navigation process](drawio/chapter_2/figure_2_1_general_language_guided_navigation_process.jpg)
+```text
+Natural Language Instruction
+        |
+        v
+Prompt Engineering and Language Understanding
+        |
+        v
+Structured Navigation Information
+        |
+        v
+Visual Grounding with Robot Camera
+        |
+        v
+Action or Goal Selection
+        |
+        v
+Robot Movement and Feedback
+```
 
-The main challenge is that language does not directly correspond to robot motion. An instruction such as "go past the sofa and stop near the door" contains an ordered route, two landmarks, a stopping condition, and an implicit spatial relation. A robot cannot execute this command unless the instruction is converted into an intermediate representation that can be grounded visually and passed to a navigation system.
-
-This is why LLMs and VLMs are increasingly used in robot navigation research. LLMs provide language reasoning, while VLMs provide the ability to connect text to images. The literature reviewed in this chapter studies different ways to combine these models with navigation systems.
+For this FYP, the navigation problem is intentionally limited to indoor environments such as a corridor, room, laboratory, door area, table area, chair area, or signboard location. This limitation is necessary because the proposed hardware uses a USB webcam and simple wheeled motion, not LiDAR, RGB-D SLAM, or high-cost navigation hardware. The controlled environment makes it possible to evaluate the core research question: whether structured prompt engineering can produce useful navigation information for a simple mobile robot.
 
 ## 2.3 Prompt Engineering for Robot Navigation
 
-Prompt engineering is the process of designing input instructions, examples, constraints, and output formats for an LLM or VLM. In robot navigation, prompt engineering is important because the model output must be useful for a downstream robot system. A free-form paragraph is often not enough. The robot may need a structured output such as an ordered landmark list, target object, spatial relation, action label, or navigation constraint.
+Prompt engineering is the design of model instructions, examples, constraints, and output formats so that an LLM or VLM produces useful responses. In robot navigation, prompt engineering is important because the model output must be connected to a physical robot. A free-form explanation is not enough. The output should contain machine-readable information such as the target object, relevant landmarks, spatial relation, action goal, suggested action, and uncertainty level.
 
-Prompt engineering can be used in several parts of a robot navigation pipeline. It can extract landmarks from a natural language command, convert an instruction into a list of sub-goals, ask a VLM to identify which image best matches a goal, or ask a VLM to select the next action. The prompt may also require the model to respond in a fixed schema so that the output can be processed automatically.
-
-For this project, prompt engineering is not treated only as a text generation technique. It is treated as an interface between human instruction and robot action. A good prompt should reduce ambiguity, control the model output format, and produce information that can be used by grounding and navigation modules.
+In an LM-Nav-style system, prompt engineering can be used to extract landmarks from a natural language command. In a VLMnav-style system, prompt engineering can ask a model to choose the best next action from a fixed set. For a low-cost robot prototype, both ideas are useful. The robot does not need a complex high-level planner in the first implementation if the prompt output can be converted into a small set of validated motor commands.
 
 **Table 2.1: Roles of prompt engineering in mobile robot navigation**
 
-| Role | Example Output | Purpose |
+| Role | Example Output | Purpose in This FYP |
 |---|---|---|
-| Landmark extraction | `chair`, `table`, `door` | Identify important objects or places |
-| Route decomposition | `door -> hallway -> window` | Convert instruction into ordered sub-goals |
-| Spatial relation extraction | `chair near table` | Preserve relation information |
-| Constraint extraction | `avoid crowded area` | Identify safety or movement restrictions |
-| Visual grounding query generation | `chair near a wooden table` | Improve image-text matching |
-| Action selection | `turn left`, `move forward`, `stop` | Support direct navigation decisions |
+| Landmark extraction | `door`, `chair`, `table`, `signboard` | Identify objects or places mentioned by the user |
+| Target selection | `target: door` | Decide the main navigation goal |
+| Spatial relation extraction | `chair near table` | Preserve relations that affect grounding |
+| Route or action interpretation | `move_forward`, `turn_left` | Convert instruction meaning into simple action options |
+| Structured output formatting | JSON-style response | Allow Python code on the RDK X5 board to parse the result |
+| Uncertainty handling | `uncertainty: high` | Prevent unsafe execution when the model is unsure |
+| Visual grounding query generation | `door in indoor corridor` | Improve matching between text and webcam image |
 
-The reviewed literature shows that prompt engineering becomes more important as robot systems rely more on LLMs and VLMs. In `LM-Nav`, prompting is used to extract landmarks (Shah et al., 2023a). In `VLMaps`, language can be translated into map-based navigation commands (Huang et al., 2023). In `VLMnav`, prompting is used to turn navigation into a question-answering task (Goetting et al., 2024). These examples show that prompt engineering can influence both planning and action selection.
+For this project, prompt engineering is treated as the interface between human language and robot action. The prompt must not only produce a correct sentence; it must produce an output that can be checked, logged, evaluated, and used by the RDK X5 decision logic.
 
-## 2.4 Vision-Language Models and Grounding
+## 2.4 Vision-Language Grounding for Indoor Landmarks
 
-Vision-language grounding is the process of connecting text descriptions to visual observations. For mobile robot navigation, this means matching words such as "chair," "door," "hallway," or "exit" with what the robot sees through its camera. Without grounding, a robot may understand the text but still fail to identify the correct target in the environment.
+Vision-language grounding is the process of connecting text descriptions to visual observations. For mobile robot navigation, this means matching a target word such as "door", "chair", "table", "corridor", or "signboard" with what the robot sees through its camera.
 
-CLIP is one of the most common models used for image-text grounding. It maps images and text into a shared embedding space, allowing similarity comparison between a text query and an image observation. In the context of navigation, a robot can compare a text landmark with candidate images and choose the image that best matches the landmark.
-
-The basic grounding concept can be represented as:
+CLIP and OpenCLIP-style models are common choices for image-text grounding because they embed images and text into a shared feature space. A text query can be compared with an image using cosine similarity:
 
 ```text
 score(image, text) = cosine_similarity(E_image(image), E_text(text))
 ```
 
-where `E_image` is the image encoder and `E_text` is the text encoder. The image with the highest similarity score is selected as the most relevant visual match.
+where `E_image` is the image encoder and `E_text` is the text encoder. The image or region with the highest score can be treated as the most relevant match. A modern VLM may also be used by asking a question such as "Does this image contain a door?" or "Which action should the robot take to find the chair near the table?"
 
-However, vision-language grounding remains challenging. Objects can be partially visible, visually similar, or absent from the current view. Some instructions also include spatial relations such as "between," "beside," or "near," which are more difficult than recognizing a single object. This motivates later methods such as `VLMaps` and `HOV-SG`, which improve grounding by using spatial maps and scene graphs.
+However, visual grounding remains a limitation for low-cost robots. A USB webcam provides only RGB images and does not directly provide depth, object distance, or a 3D map. The system may also struggle when multiple similar objects are visible, when lighting is poor, or when the target is partly outside the camera view. For this reason, the proposed project focuses on simple indoor landmarks and a small action set rather than full autonomous navigation in complex environments.
 
-For this project, visual grounding is important because prompt output must eventually connect to the robot's visual world. A prompt that extracts a correct landmark is only useful if the system can ground that landmark in images or environment representations.
-
-Several technical terms are central to this project. A landmark refers to an object, place, or visual cue that can be used as a navigation sub-goal. Grounding refers to the process of matching a language concept with a visual observation or spatial location. A navigation policy refers to the model or algorithm that produces movement decisions. A prompt template refers to the structured instruction given to an LLM or VLM so that the model output can be used by another system module. These terms are important because the proposed research depends on the connection between language interpretation, visual grounding, and navigation execution.
-
-## 2.5 LM-Nav as the Baseline Study
+## 2.5 LM-Nav as the Main Baseline
 
 ### 2.5.1 Overview of LM-Nav
 
-`LM-Nav: Robotic Navigation with Large Pre-Trained Models of Language, Vision, and Action` by Shah et al. (2023a) is the main baseline paper for this project. The paper was published in the Proceedings of the 6th Conference on Robot Learning, PMLR volume 205, pages 492-504.
+`LM-Nav: Robotic Navigation with Large Pre-Trained Models of Language, Vision, and Action` by Shah et al. (2023a) is the main baseline for this project. LM-Nav addresses the problem that many visual navigation systems expect a goal image, while human users naturally provide language instructions. The paper avoids collecting a large language-annotated robot navigation dataset by composing pre-trained models.
 
-The problem addressed by `LM-Nav` is that many visual navigation policies require goals to be specified as images. This is not natural for human users. A human user is more likely to provide a language instruction than a goal image. At the same time, collecting large-scale robot datasets with language annotations is expensive. `LM-Nav` solves this problem by combining pre-trained models instead of training a new language-conditioned navigation model from scratch.
+The LM-Nav pipeline contains three main stages:
 
-The main idea of `LM-Nav` is to compose three models:
-
-1. GPT-3 extracts landmark names from the natural language instruction.
+1. GPT-3 extracts landmarks from the natural language instruction.
 2. CLIP grounds the extracted landmarks in visual observations.
-3. ViNG navigates toward the selected visual landmark.
+3. ViNG navigates toward the selected visual goal.
 
 This pipeline is shown in Figure 2.2.
 
 **Figure 2.2: LM-Nav baseline pipeline**
 
-![Figure 2.2: LM-Nav baseline pipeline](drawio/chapter_2/figure_2_2_lm_nav_baseline_pipeline.jpg)
+```text
+User Language Instruction
+        |
+        v
+LLM Landmark Extraction
+        |
+        v
+CLIP Visual Grounding
+        |
+        v
+Visual Navigation Model
+        |
+        v
+Robot Navigation Toward Goal
+```
 
-### 2.5.2 Methodological Contribution
+### 2.5.2 Strength of LM-Nav
 
-The key methodological contribution of `LM-Nav` is modular composition. Instead of building one large model that directly maps language and images to robot actions, the system divides the problem into language understanding, visual grounding, and navigation execution. This makes the system easier to interpret and evaluate.
+The main strength of LM-Nav is its modular architecture. It does not require one end-to-end model that directly maps language and images to motor commands. Instead, it separates language understanding, visual grounding, and action execution. This separation is useful for research because each module can be tested and improved independently.
 
-The language component is especially relevant to this project. GPT-3 is prompted to extract landmarks from the instruction. For example, an instruction such as "go past the fountain and toward the library" may be converted into the landmarks `fountain` and `library`. These landmarks become intermediate goals for the navigation system.
+LM-Nav is also important because it demonstrates that pre-trained models can be combined for robot navigation without training a new language-conditioned navigation model from scratch. This idea is suitable for an FYP because collecting a large robot dataset is not realistic within the time and cost constraints of a student project.
 
-The grounding component uses CLIP to match landmark names with visual observations. CLIP provides a way to compare text and images without training a new object detector for every possible landmark. This gives the robot open-vocabulary capability, meaning it can potentially respond to object names that were not part of a fixed detector label set.
+### 2.5.3 Limitation of LM-Nav
 
-The action component uses ViNG, a visual navigation model, to move toward the selected goal. This allows the robot to use a visual navigation policy trained from unannotated trajectory data while still accepting language instructions from the user.
+LM-Nav also has limitations that motivate this project. The language module mainly extracts landmarks. This may be insufficient for instructions that include spatial relations, route order, or constraints. For example, "move toward the chair near the table" should not be reduced only to `chair` and `table`; the relation `chair near table` is also important.
 
-### 2.5.3 Strengths of LM-Nav
+Another limitation is hardware and navigation complexity. LM-Nav was demonstrated with a more capable outdoor robot platform and a visual navigation model. A student FYP robot using an RDK X5 development board, STM32-based robot control board, ESP32 ultrasonic sensor module, USB webcam, and DC motors cannot reproduce the full navigation capability directly. Therefore, this project uses LM-Nav as an architectural inspiration, not as a full implementation target.
 
-`LM-Nav` has several strengths. First, it avoids the need for language-annotated navigation datasets. This is important because collecting robot trajectories with natural language instructions is expensive and time-consuming. Second, it uses pre-trained models that already contain broad language and visual knowledge. Third, its modular structure allows each component to be analyzed separately.
+### 2.5.4 Relevance to This Project
 
-`LM-Nav` is also suitable as a baseline for prompt engineering. The prompt used for landmark extraction directly affects the rest of the pipeline. If the LLM extracts the wrong landmark, the visual grounding and navigation modules will also fail. Therefore, improving prompt design can improve the overall navigation process.
+LM-Nav provides the central structure for the proposed prototype: language understanding, visual grounding, and action execution. The difference is that this project adapts the final execution stage into a simple action-control system. Instead of using a full visual navigation policy, the RDK X5 board will select one of a small set of actions, check obstacle status from the ESP32 ultrasonic module, and send validated movement commands to the STM32-based robot control board. This makes the project realistic for a low-cost indoor robot while preserving the research value of structured prompt engineering.
 
-### 2.5.4 Limitations of LM-Nav
+## 2.6 VLMnav as a Prompt-Based Action Selection Reference
 
-Although `LM-Nav` is a strong baseline, it has limitations. The first limitation is that a landmark list may not capture the full meaning of an instruction. Human commands often include spatial relations, constraints, and route order. A simple landmark list may lose important information such as "near the table," "avoid the crowded area," or "after passing the door."
+`VLMnav: End-to-End Navigation with Vision Language Models` by Goetting et al. (2024) is highly relevant because it formulates navigation as a question-answering problem. Instead of requiring the model to output a long navigation plan, the system can ask a VLM to choose among possible actions. This is close to the needs of the proposed robot because the first prototype only needs a small action set: `move_forward`, `turn_left`, `turn_right`, `stop`, and `search`.
 
-The second limitation is visual grounding. CLIP can match text and images, but it may struggle with precise spatial relations and visually similar objects. For example, if there are several chairs in an environment, CLIP may not know which chair is "near the table" unless the relation is represented clearly.
+The strength of VLMnav is that it connects visual observation, language instruction, and action selection through prompting. This supports the idea that prompt design can affect not only landmark extraction but also robot movement decisions. For example, a prompt can ask whether the current webcam image contains the target, whether the robot should turn to search, or whether it should stop because the target has been found.
 
-The third limitation is navigation execution. The final performance depends on the visual navigation model. If the navigation model cannot reach the selected image goal safely, the language and grounding stages are not enough.
+The limitation is that direct VLM action selection may not be safe enough for unsupervised robot control. VLM outputs can be inconsistent, and the model may choose an action even when the target is not visible or the instruction is ambiguous. For this reason, the proposed FYP will validate the structured output, uncertainty level, and ESP32 ultrasonic obstacle status before sending commands to the STM32-based robot control board. VLMnav is therefore treated as a prompt/action-selection reference, while the robot remains a controlled research prototype.
 
-These limitations motivate the need to review later work on spatial grounding, stronger navigation backbones, VLM-based action selection, and integrated VLA models.
+## 2.7 Spatial Grounding Methods: VLMaps and HOV-SG
 
-## 2.6 Spatial Grounding Methods
+Spatial grounding methods improve the connection between language and the physical environment. Two important examples are `VLMaps` and `HOV-SG`.
 
-### 2.6.1 Importance of Spatial Grounding
+`VLMaps: Visual Language Maps for Robot Navigation` by Huang et al. (2023) builds an open-vocabulary visual-language map. Instead of matching a text query only to the current camera image, the robot can query a map that stores semantic visual features. The strength of VLMaps is that it provides spatial memory and can connect language to locations. Its limitation is that it requires map construction, camera pose information, and RGB-D or mapping support. This makes it more complex than the first version of the proposed FYP robot.
 
-Spatial grounding is the ability to connect language to locations, objects, and relations in the environment. `LM-Nav` grounds language using image-text matching, but later methods show that maps and scene graphs can provide stronger grounding. This is important because mobile robot navigation often requires spatial reasoning, not only object recognition.
+`HOV-SG: Hierarchical Open-Vocabulary 3D Scene Graphs for Language-Grounded Robot Navigation` by Werby et al. (2024) uses a hierarchical 3D scene graph to represent floors, rooms, and objects. This is powerful for long-horizon and multi-room navigation because the robot can reason about object and room relationships. However, it requires segmentation, 3D perception, graph construction, and more advanced sensing. This is not suitable for the first low-cost prototype, but it is valuable as a future improvement direction.
 
-For example, the instruction "go to the chair near the table" requires the robot to identify a chair, a table, and the relation between them. The instruction "go to the kitchen on the second floor" requires a hierarchy of floors and rooms. A simple image-text similarity score may not be enough for these cases.
+Both papers show that spatial grounding is important. They also highlight a gap for this project: a low-cost robot without RGB-D mapping still needs a way to preserve spatial relations from language. Structured prompt engineering can support this by extracting fields such as `target`, `landmarks`, and `spatial_relation`, even if the first implementation only uses webcam-based grounding.
 
-### 2.6.2 VLMaps
+## 2.8 Navigation Execution Models: ViNT and NoMaD
 
-`VLMaps: Visual Language Maps for Robot Navigation` by Huang et al. (2023) proposes an open-vocabulary map representation for robot navigation. Instead of matching language only to individual images, VLMaps stores visual-language features in a map. The robot can then query the map using natural language.
+The execution stage determines how a robot physically moves toward a target. In advanced systems, this may involve a learned navigation policy, obstacle avoidance, and goal-conditioned control. `ViNT` and `NoMaD` are important because they represent stronger navigation execution methods than a simple rule-based motor command system.
 
-This method is relevant to `LM-Nav` because it improves the grounding stage. In `LM-Nav`, CLIP is used to connect landmarks to visual observations. In `VLMaps`, visual-language features are connected to physical map locations. This allows the robot to answer queries such as where a particular object or region is located.
+`ViNT: A Foundation Model for Visual Navigation` by Shah et al. (2023b) proposes a visual navigation foundation model trained across diverse robot datasets. Its strength is generalization across platforms and environments. Its limitation for this FYP is that deploying and validating a full visual navigation model is outside the main scope. This project focuses on prompt engineering, visual grounding, and simple action control, not training or deploying a foundation navigation policy.
 
-VLMaps also uses language models to help convert user commands into executable navigation behavior. This makes it relevant to prompt engineering because the language model output can become a structured command for map querying and navigation.
+`NoMaD: Goal Masked Diffusion Policies for Navigation and Exploration` by Sridhar et al. (2023) uses a diffusion-based policy for goal-directed navigation and exploration. Its strength is stronger navigation behavior and exploration ability. Its limitation is that it requires a more complex policy deployment pipeline and suitable robot data. For the proposed project, NoMaD is therefore best treated as future work after the baseline RDK X5, ESP32, and STM32-controlled robot is functioning.
 
-The advantage of VLMaps is that it combines semantic flexibility with spatial structure. It supports open-vocabulary queries while maintaining a map representation. The limitation is that it requires map construction and sensing support, which may make implementation more complex than the simpler `LM-Nav` pipeline.
+These works are important because they show how the simple action-control layer in this FYP could later be replaced by a stronger navigation model. However, they are not the main implementation because the research focus is prompt-engineered interpretation of natural language instructions.
 
-### 2.6.3 HOV-SG
+## 2.9 Recent VLM and VLA Navigation Systems
 
-`HOV-SG: Hierarchical Open-Vocabulary 3D Scene Graphs for Language-Grounded Robot Navigation` by Werby et al. (2024) extends spatial grounding by using hierarchical 3D scene graphs. The method organizes the environment into floors, rooms, and objects. This is useful for long-horizon navigation where instructions refer to large spaces or hierarchical locations.
+Recent work has moved toward more integrated VLM and VLA navigation systems. These systems can reason over video, language, and action more directly than the earlier modular LM-Nav design.
 
-Compared with `LM-Nav`, HOV-SG provides a richer world representation. `LM-Nav` can identify landmarks, but it does not explicitly model the relationship between floors, rooms, and objects. HOV-SG can support queries that require hierarchy, such as finding an object inside a particular room or on a particular floor.
+`NaVid` by Zhang et al. (2024) uses video-based VLM planning for vision-and-language navigation. Its strength is that it uses temporal visual context rather than a single image. This is useful for robot navigation because the current view alone may not contain enough information. Its limitation is that video-based reasoning and model inference can be expensive for a small embedded robot.
 
-HOV-SG is important for this project because it shows how language grounding can move beyond image matching. Prompt engineering can produce structured queries, and the scene graph can support grounding and planning. However, HOV-SG also requires more complex perception, mapping, segmentation, and graph construction. It is therefore more suitable as a future improvement direction than as the first implementation target.
+`Uni-NaVid` by Zhang et al. (2026) extends the video-based approach toward a unified model for multiple embodied navigation tasks. Its strength is broad task coverage. Its limitation is that the system is more advanced and resource-intensive than a first FYP prototype.
 
-### 2.6.4 Summary of Spatial Grounding Works
+`NaVILA` by Cheng et al. (2025) studies VLA navigation for legged robots. Its strength is the connection between vision-language reasoning and real robot movement. Its limitation for this project is that it focuses on more complex legged platforms and server-style model pipelines, while the proposed robot is a wheeled low-cost indoor platform.
 
-VLMaps and HOV-SG both address a weakness in `LM-Nav`: limited spatial representation. They show that language-guided navigation can benefit from grounding methods that store semantic information in maps or graphs. For this project, these papers support the idea that prompt outputs should include more than object names. The prompt should also preserve spatial relations, route order, and constraints so that future grounding modules can use them effectively.
+These papers are relevant because they show the direction of future navigation research. However, they also reinforce the need for a realistic baseline prototype. A student project can first demonstrate prompt-engineered instruction parsing, webcam grounding, and simple action control before attempting advanced VLA navigation.
 
-**Table 2.2: Spatial grounding papers**
+## 2.10 Critical Comparison of Related Works
 
-| Paper | Grounding Representation | Relevance to This Project |
-|---|---|---|
-| `LM-Nav` | CLIP image-text matching | Baseline visual grounding method |
-| `VLMaps` | Open-vocabulary visual-language map | Improves grounding with map locations |
-| `HOV-SG` | Hierarchical 3D scene graph | Improves grounding with rooms, floors, and objects |
+The reviewed papers differ significantly in method, hardware complexity, cost, and suitability for student-level implementation. Table 2.2 compares the papers based on their main method, strength, limitation, and relevance to this project.
 
-## 2.7 Navigation and Action Models
+**Table 2.2: Critical comparison of related papers**
 
-### 2.7.1 Role of Navigation Models
+| Paper | Main Method | Hardware or Platform | Strength | Limitation | Relevance to This Project |
+|---|---|---|---|---|---|
+| `LM-Nav` | GPT-3 landmark extraction, CLIP grounding, ViNG navigation | Real robot platform with RGB cameras and navigation sensors | Clear modular baseline for language to vision to action | Landmark-only extraction may lose spatial relations; full navigation setup is more complex than this FYP | Main baseline architecture adapted into a low-cost indoor prototype |
+| `VLMnav` | VLM question-answering for action choice | Simulation-style embodied navigation setup with visual observations and action choices | Strong reference for prompt-based action selection | Direct VLM actions require validation before real robot control | Supports the proposed fixed action set and prompt design |
+| `VLMaps` | Open-vocabulary visual-language maps | Mapping-based setup using RGB-D or pose-supported observations | Stronger spatial grounding and language-map querying | Requires map construction and additional sensing | Future improvement for map-based grounding |
+| `HOV-SG` | Hierarchical open-vocabulary 3D scene graph | 3D perception, scene graph construction, and robot/simulator experiments | Supports object, room, and floor-level reasoning | Too complex for first low-cost webcam prototype | Future improvement for structured spatial memory |
+| `ViNT` | Visual navigation foundation model | Multi-robot visual navigation datasets and deployment platforms | Stronger visual navigation execution | Does not focus on prompt engineering; deployment is beyond initial scope | Possible future replacement for simple action control |
+| `NoMaD` | Diffusion-based goal-conditioned navigation policy | Robot navigation experiments with visual observations | Improves exploration and goal reaching | Requires navigation policy deployment and data support | Future work after baseline prototype |
+| `NaVid` | Video-based VLM next-step planning | Simulation and real-world video navigation experiments | Uses temporal context for navigation decisions | More model and compute intensive than single-webcam baseline | Future direction for video-based reasoning |
+| `Uni-NaVid` | Unified video-based VLA navigation model | Advanced embodied navigation platforms | Supports multiple navigation task types | Resource-intensive and not suitable as first implementation | Long-term improvement direction |
+| `NaVILA` | Vision-language-action navigation for legged robots | Legged robot demonstrations and simulation benchmarks | Connects VLA reasoning to real movement | Focuses on complex legged platforms and larger model pipelines | Relevant conceptually but not the main hardware target |
 
-Language understanding and grounding are not enough to complete robot navigation. The robot must still move toward the target. The navigation model must handle obstacles, visual changes, route uncertainty, and real-world movement constraints. Therefore, improvements in visual navigation models are important for any language-guided navigation system.
+The comparison shows that LM-Nav and VLMnav are the most directly relevant to this project. LM-Nav provides the modular structure, while VLMnav supports the idea of selecting actions through prompt-based reasoning. VLMaps, HOV-SG, ViNT, NoMaD, NaVid, Uni-NaVid, and NaVILA are important, but they require additional sensing, mapping, model deployment, or compute resources that are not realistic for the first prototype.
 
-In `LM-Nav`, the navigation execution module is ViNG. Later papers such as `ViNT` and `NoMaD` provide stronger alternatives for the action and navigation layer.
+## 2.11 Hardware Suitability for This FYP
 
-### 2.7.2 ViNT
+A critical issue for this project is hardware feasibility. Many research systems use expensive robots, RGB-D cameras, LiDAR, server GPUs, or advanced navigation policies. This FYP must use a lower-cost platform while still preserving a meaningful research contribution. Table 2.3 summarizes the suitability of literature components for the proposed implementation.
 
-`ViNT: A Foundation Model for Visual Navigation` by Shah et al. (2023b) proposes a transformer-based visual navigation model trained across diverse datasets and robot platforms. The paper argues that visual navigation can benefit from a foundation model approach, where a general model is trained on broad data and then adapted to specific tasks.
+**Table 2.3: Hardware and method suitability for this FYP**
 
-ViNT is relevant because it can improve the navigation execution stage of an `LM-Nav`-style system. Instead of relying on an older visual navigation policy, a stronger visual navigation backbone could be used after the language and grounding modules identify the target.
-
-The main strength of ViNT is generalization. Navigation systems must operate across different environments, camera views, lighting conditions, and robot platforms. A foundation navigation model is expected to be more robust than a narrow model trained for a limited setting.
-
-For this project, ViNT is not the main prompt engineering reference, but it is important as a navigation execution reference. It shows that even if prompt extraction and grounding are correct, the final robot performance still depends on the quality of the navigation model.
-
-### 2.7.3 NoMaD
-
-`NoMaD: Goal Masking Diffusion Policies for Navigation and Exploration` by Sridhar et al. (2023) introduces a diffusion-based policy for navigation and exploration. It addresses the challenge of moving toward a goal while also exploring unknown environments. This is important because a robot may not always see the target landmark immediately.
-
-NoMaD is relevant to `LM-Nav` because the baseline assumes that a grounded visual goal can be selected and reached. In real environments, the robot may need to search for a target or explore before the target becomes visible. NoMaD provides a stronger action model for cases where exploration and goal-directed navigation must be combined.
-
-The main advantage of NoMaD is that diffusion policies can represent multiple possible action paths. This is useful in navigation because there may be several valid routes or exploratory directions. For this project, NoMaD supports the discussion that navigation execution is a separate research challenge from prompt design.
-
-### 2.7.4 Summary of Navigation Model Works
-
-ViNT and NoMaD improve the execution side of language-guided navigation. They are not primarily prompt engineering papers, but they are necessary to understand the complete system. A well-designed prompt can produce a good target, but a weak navigation policy may still fail to reach it.
-
-**Table 2.3: Navigation model papers**
-
-| Paper | Main Contribution | Relevance to This Project |
-|---|---|---|
-| `ViNG` in `LM-Nav` | Visual goal navigation | Baseline navigation execution |
-| `ViNT` | Foundation model for visual navigation | Stronger visual navigation backbone |
-| `NoMaD` | Diffusion policy for navigation and exploration | Improved exploration and goal-reaching behavior |
-
-## 2.8 VLM and VLA Navigation
-
-### 2.8.1 Shift Toward Integrated Models
-
-The `LM-Nav` pipeline is modular. It separates language understanding, grounding, and navigation. Newer methods move toward more integrated VLM and VLA systems, where a model can process visual observations, language instructions, and action choices together. These systems aim to reduce the separation between perception, reasoning, and action.
-
-This direction is important because navigation is sequential. A robot observes the world over time, remembers what it has seen, and chooses the next movement. Video-based VLMs and VLA models are designed to handle this kind of temporal information.
-
-### 2.8.2 NaVid
-
-`NaVid: Video-based VLM Plans the Next Step for Vision-and-Language Navigation` by Zhang et al. (2024) uses video observations and language instructions to plan the next navigation step. Unlike `LM-Nav`, which extracts landmarks and grounds them separately, NaVid uses a video-based VLM to reason about the navigation situation.
-
-The main improvement of NaVid is the use of temporal visual context. A robot's current decision depends not only on the current frame but also on what it has seen before. Video history helps the system understand progress through the environment.
-
-For this project, NaVid is relevant as a later-stage VLM navigation direction. It shows that VLMs can be used not only for grounding, but also for next-step decision making. However, because this project focuses on prompt engineering and modular navigation, NaVid is used mainly as a supporting reference rather than the baseline method.
-
-### 2.8.3 Uni-NaVid
-
-`Uni-NaVid: A Video-based Vision-Language-Action Model for Unifying Embodied Navigation Tasks` by Zhang et al. (2026) is listed in the RSS 2026 program. It represents a newer direction where one VLA model is designed to support several embodied navigation tasks, including instruction following, object search, tracking, and embodied question answering.
-
-Uni-NaVid is important because it suggests that future navigation systems may not be limited to one task type. Instead, one model may handle different navigation-related tasks using a shared visual-language-action representation.
-
-Compared with `LM-Nav`, Uni-NaVid is more integrated and likely requires larger training resources. This makes it less suitable as the first implementation for this project, but valuable as a future research direction.
-
-### 2.8.4 NaVILA
-
-`NaVILA: Legged Robot Vision-Language-Action Model for Navigation` by Cheng et al. (2025) focuses on VLA navigation for legged robots. It uses a high-level VLA model to generate movement commands, while a lower-level locomotion policy handles physical execution. This separation is important because high-level reasoning and low-level control operate at different levels.
-
-NaVILA is relevant because it shows how language and visual reasoning can be connected to real robot motion. It also supports the idea of using structured intermediate actions. For example, the VLA model may decide a movement direction or mid-level command, while the locomotion controller handles the detailed movement.
-
-For this project, NaVILA is a useful reference for future physical robot implementation. It shows that prompt-like structured outputs can become a bridge between reasoning models and robot control.
-
-### 2.8.5 Summary of VLM and VLA Works
-
-NaVid, Uni-NaVid, and NaVILA show that the field is moving toward more integrated navigation agents. These methods improve on the modular `LM-Nav` design by allowing vision, language, and action to interact more directly. However, they may be harder to reproduce because they require large datasets, specialized models, or real robot experiments.
-
-**Table 2.4: VLM and VLA navigation papers**
-
-| Paper | Main Direction | Relevance to This Project |
-|---|---|---|
-| `NaVid` | Video-based VLM next-step planning | Supports VLM-based navigation reasoning |
-| `Uni-NaVid` | Unified VLA navigation tasks | Represents latest integrated model direction |
-| `NaVILA` | VLA navigation for legged robots | Shows connection between VLA reasoning and real robot movement |
-
-## 2.9 Prompt-Based and Zero-Shot Navigation
-
-### 2.9.1 VLMnav
-
-`VLMnav: End-to-End Navigation with Vision Language Models: Transforming Spatial Reasoning into Question-Answering` by Goetting et al. (2024) is highly relevant to this project because it directly studies prompt-based navigation. The paper formulates navigation as a question-answering task for a VLM. Instead of only extracting landmarks, the model is asked to choose navigation actions based on visual observations and language goals.
-
-This approach is important because it moves prompt engineering closer to the action selection stage. In `LM-Nav`, the prompt asks the LLM to identify landmarks. In `VLMnav`, the prompt can ask the VLM which action should be taken next. This creates a direct relationship between prompt design and navigation behavior.
-
-For this project, VLMnav provides the strongest prompt-engineering reference after `LM-Nav`. It supports the idea that different prompt templates can be compared experimentally. For example, a project can compare a landmark extraction prompt, a structured output prompt, and an action question-answering prompt.
-
-### 2.9.2 VLN-Zero
-
-`VLN-Zero: Rapid Exploration and Cache-Enabled Neurosymbolic Vision-Language Planning for Zero-Shot Transfer in Robot Navigation` by Bhatt et al. (2025) focuses on zero-shot navigation, exploration, memory, and efficient planning. It combines VLM-guided exploration with symbolic scene graphs and caching.
-
-VLN-Zero is relevant because one limitation of VLM-based navigation is repeated model calling. If a robot asks a large model for every small action, the system may become slow or expensive. VLN-Zero addresses this by building reusable memory and caching useful trajectories.
-
-Compared with `LM-Nav`, VLN-Zero places more emphasis on exploration and memory. This is useful for future work because a mobile robot may need to explore before it can ground a target landmark. It also shows that prompt engineering can be used not only for instruction parsing, but also for guiding exploration and building structured memory.
-
-### 2.9.3 VLM-Nav for UAV Navigation
-
-`VLM-Nav: Mapless UAV Navigation Using Monocular Vision Driven by Vision-Language Models` by Sarker et al. (2026) is a recent paper that studies VLM-based UAV navigation. The system uses monocular vision, zero-shot depth estimation, and VLM reasoning for obstacle-aware mapless navigation.
-
-This paper is less directly related to `LM-Nav` because it focuses on UAV navigation rather than language-guided ground robot navigation. However, it is useful as a recent example of VLMs being used for navigation reasoning. It shows that VLMs can support obstacle interpretation, scene understanding, and motion-related decisions without requiring a full prebuilt map.
-
-For this project, VLM-Nav is considered a supporting reference. It strengthens the motivation that VLMs are becoming important in robot navigation, but the main methodology remains closer to `LM-Nav` and `VLMnav`.
-
-### 2.9.4 Summary of Prompt-Based and Zero-Shot Works
-
-VLMnav, VLN-Zero, and VLM-Nav show different ways to use VLMs in navigation. VLMnav focuses on action selection through question answering. VLN-Zero focuses on zero-shot exploration, memory, and symbolic planning. VLM-Nav focuses on mapless UAV navigation using monocular visual reasoning.
-
-**Table 2.5: Prompt-based and zero-shot navigation papers**
-
-| Paper | Main Contribution | Relevance to This Project |
-|---|---|---|
-| `VLMnav` | Navigation as VLM question answering | Main prompt-engineering improvement reference |
-| `VLN-Zero` | Zero-shot VLM planning with memory and caching | Supports efficient exploration and reuse |
-| `VLM-Nav` | Mapless UAV navigation with VLM reasoning | Recent supporting example of VLM navigation |
-
-## 2.10 Comparative Review of Related Works
-
-The reviewed papers can be compared based on which part of the navigation pipeline they improve. `LM-Nav` is the main baseline because it provides a complete modular pipeline. The other papers improve specific weaknesses of the baseline.
-
-**Table 2.6: Comparison of related papers**
-
-| Paper | Main Focus | Strength | Limitation |
+| Component or Method from Literature | Used in Original Paper or Related Work | Suitability for This FYP | Decision |
 |---|---|---|---|
-| `LM-Nav` | Landmark extraction, CLIP grounding, visual navigation | Clear modular baseline using pre-trained models | Landmark-only representation may lose spatial details |
-| `VLMaps` | Open-vocabulary spatial maps | Stronger grounding with map locations | Requires map construction and sensing support |
-| `HOV-SG` | Hierarchical 3D scene graphs | Supports rooms, floors, and object hierarchy | More complex pipeline |
-| `ViNT` | Visual navigation foundation model | Stronger navigation backbone | Does not focus on prompt engineering |
-| `NoMaD` | Diffusion policy for navigation and exploration | Handles exploration and goal reaching | Requires navigation data and policy deployment |
-| `NaVid` | Video-based VLM navigation | Uses temporal context for next-step planning | More integrated and harder to reproduce |
-| `Uni-NaVid` | Unified VLA navigation tasks | Supports multiple embodied tasks | Recent and resource-intensive |
-| `NaVILA` | VLA navigation for legged robots | Connects VLA reasoning to real locomotion | Focuses on legged robots rather than general mobile robots |
-| `VLMnav` | Prompt-based action selection | Strong prompt-engineering relevance | Direct VLM actions may need safety validation |
-| `VLN-Zero` | Zero-shot planning and memory | Reduces repeated model calls using caching | More complex than a basic LM-Nav pipeline |
-| `VLM-Nav` | Mapless UAV navigation | Recent VLM navigation example | UAV domain differs from ground mobile robot navigation |
+| RGB camera or webcam | Used in LM-Nav and many VLM navigation works as visual input | Highly suitable because it is low-cost and easy to connect through USB | An unbranded 1080p USB webcam will be used as the main visual sensor |
+| RDK X5 development board with 8GB RAM | Not the main board in LM-Nav, but representative of low-cost embedded AI/robotics hardware | Suitable for running Python, webcam capture, prompt processing, visual grounding, and high-level decision logic | Will be used as the onboard computing unit |
+| ROS Robot Control Board V3.0 with STM32F103RCT6 | Not central in reviewed AI navigation papers | Suitable for low-level motor control and movement command execution | Will be used as the low-level motor control board |
+| ESP32 microcontroller | Not central in reviewed AI navigation papers, but common in low-cost sensor integration | Suitable for reading four ultrasonic sensors independently from the motor controller | Will be added as the ultrasonic sensor controller |
+| Four ultrasonic sensors | Not the main perception method in the reviewed VLM papers | Suitable as a low-cost proximity and safety aid when connected to the ESP32 | Will be used for simple obstacle or distance awareness |
+| Four DC motors and chassis | Common in low-cost mobile robots but not the focus of high-level papers | Suitable for simple wheeled movement | Will be used for movement execution |
+| 18650 battery pack | Standard power source for small mobile robot prototypes | Suitable for mobile operation when voltage and current requirements are handled safely | Will be used as the robot power source |
+| RGB-D camera | Used or required by mapping-based works such as VLMaps and HOV-SG-style pipelines | Useful but increases cost and complexity | Optional future improvement |
+| LiDAR | Used in some advanced robot navigation and scene understanding systems | Useful for safety and mapping but too costly for the first prototype | Not used in the baseline prototype |
+| Full 3D scene graph | Used in HOV-SG and related spatial reasoning systems | Strong for spatial reasoning but requires 3D perception and mapping | Future improvement only |
+| Large VLA model or server GPU | Used in advanced VLA systems such as NaVILA or Uni-NaVid-style pipelines | Powerful but not realistic for a low-cost first prototype | Not used in first implementation |
+| CLIP, OpenCLIP, or VLM grounding | Used in LM-Nav-style grounding and VLM navigation | Suitable for prototype testing with indoor images | Will be used or evaluated depending on available compute |
+| Learned navigation policy such as ViNT or NoMaD | Used in advanced navigation execution research | Useful but outside the main prompt-engineering scope | Future replacement for simple action control |
 
-The comparison shows that no single paper solves all aspects of prompt-engineered mobile robot navigation. `LM-Nav` provides the clearest baseline, but it can be improved by later methods. `VLMaps` and `HOV-SG` improve spatial grounding. `ViNT` and `NoMaD` improve navigation execution. `NaVid`, `Uni-NaVid`, and `NaVILA` represent future integrated VLM/VLA navigation systems. `VLMnav` provides the most direct support for prompt-based action selection.
+This table supports the design decision to build a low-cost indoor prototype. The project will not claim full autonomy in complex environments. Instead, it will demonstrate a baseline pipeline that future researchers can improve with better sensors, mapping, and navigation policies.
 
-From a critical perspective, the papers can be divided into methods that are practical for immediate implementation and methods that are more suitable as future extensions. `LM-Nav` and `VLMnav` are most suitable for this project because both can be studied through prompt design, structured outputs, and image-based evaluation. `VLMaps` and `HOV-SG` provide stronger grounding, but they require mapping or scene-graph construction. `ViNT` and `NoMaD` improve execution, but they depend on navigation model deployment and training data. Therefore, the project should use `LM-Nav` as the baseline, use `VLMnav` as the main prompt-engineering comparison, and discuss the remaining methods as improvement directions.
-
-### 2.10.1 Hardware and Experimental Platforms in Related Works
-
-The reviewed papers use different levels of hardware, ranging from pure simulation to real mobile robots. This is important for the project because the selected methodology must be realistic for the available FYP resources. Table 2.7 summarizes the robot platforms and sensors reported by the related works.
-
-**Table 2.7: Hardware and experimental platforms used in related papers**
-
-| Paper | Robot Platform or Environment | Board / Compute Reported | Sensors / Hardware Inputs | Notes for This Project |
-|---|---|---|---|---|
-| `LM-Nav` | Clearpath Jackal UGV | Exact onboard computer board is not stated; VNM runs onboard; LLM/VLM queries are pre-computed on a remote workstation | 6-DoF IMU, GPS, wheel encoders, front and rear RGB cameras with 170-degree field of view; VNM uses forward RGB images and unfiltered GPS | Most relevant real-world baseline hardware. A simplified project can use RGB images and optional GPS/odometry. |
-| `VLMaps` | Habitat and AI2THOR simulators; real robot demonstrations with Toyota HSR support acknowledged in project materials | Exact robot board is not stated | RGB-D image sequences, camera poses, RGB-D SLAM using RTAB-Map | Useful if the project includes mapping. Requires RGB-D sensing or RGB-D dataset. |
-| `HOV-SG` | Boston Dynamics Spot robot for real-world multi-floor experiments; Habitat-Sim for simulation | Exact onboard computer board is not stated | Calibrated Azure Kinect RGB-D camera and 3D LiDAR | Strong spatial-grounding hardware, but more complex and expensive than needed for this FYP prototype. |
-| `ViNT` | Training data from TurtleBot2, Clearpath Jackal, Warthog, Spot, Yamaha Viking ATV, RC car, and cars; evaluation on LoCoBot, Vizbot, Unitree Go1, and Jackal | Official deployment code was tested on a LoCoBot running Ubuntu 20.04 with NVIDIA Jetson Orin Nano | Mainly RGB/fisheye camera observations; wheel odometry used in some experiments | Shows that visual navigation models can generalize across many robots. Useful as a future navigation backbone. |
-| `NoMaD` | Real-world LoCoBot platform in indoor and outdoor experiments | Paper notes that the compact model can run on lower-power onboard computers such as NVIDIA Jetson Orin; official deployment stack follows the ViNT/GNM robot setup | RGB observations, recent image history, and optional goal image | Relevant if the project later moves from prompt testing to onboard navigation execution. |
-| `NaVid` | Simulation benchmarks and real-world experiments | Exact robot platform and board are not stated in the main public summary; model is a video-based VLM | Monocular RGB video stream only; no map, odometer, or depth input required | Relevant because it reduces hardware requirements to an RGB camera, making it attractive for a low-cost prototype. |
-| `Uni-NaVid` | Unitree Go2 robotic dog for real-world deployment | Remote server with NVIDIA A100 GPU; portable Wi-Fi used for communication between robot and server | RealSense D455 RGB camera at 640 x 480 resolution with 90-degree HFOV; Unitree LiDAR-L1 used only for local motion planning | Provides one of the clearest recent hardware references for VLA navigation, although the compute is server-based. |
-| `NaVILA` | Legged robot demonstrations including Unitree Go2 and humanoid platforms; Isaac Sim / Isaac Lab benchmarks | VLA uses a server-based pipeline; exact server board/GPU is not stated in the project summary | RGB video frames for high-level VLA; LiDAR/height-map, proprioception, prior actions, joint position/velocity, orientation, and angular velocity for low-level locomotion | Relevant mainly for legged robots, not the first choice for a wheeled mobile robot FYP prototype. |
-| `VLMnav` | Simulated embodied navigation benchmarks such as ObjectNav and GOAT | VLM inference through API/model calls; no physical robot board reported | RGB-D image, pose, top-down voxel map, and action-choice visual prompt | Useful for prompt-engineering experiments because it can be studied without specialized robot hardware. |
-| `VLN-Zero` | Unitree Go2 quadruped robot for real-world apartment demonstration; Habitat-style benchmark environments for evaluation | Agent has compute/API access to a VLM; exact onboard board is not stated | Camera, IMU/odometry, Intel RealSense D456 RGB-D camera for scene-graph construction | Useful as a planning and memory reference, especially if the project later includes scene-graph mapping. |
-| `VLM-Nav` | AirSim multirotor UAV simulation | Simulation PC / AirSim environment; physical flight-controller board is not reported | Monocular RGB input, zero-shot depth estimation, left/right distance sensors, relative heading angle, and UAV action control | Relevant as a recent VLM navigation example, but the UAV domain differs from this mobile robot project. |
-
-From this comparison, the most realistic hardware direction for this project is an RGB-camera-based mobile robot or a simulation/image-based setup. `LM-Nav` uses a Clearpath Jackal with GPS, wheel encoders, IMU, and RGB cameras, but the exact onboard computer board is not identified in the paper. `ViNT` and `NoMaD` provide the most practical board-level reference because their official deployment stack is associated with a LoCoBot and NVIDIA Jetson Orin Nano. `Uni-NaVid` provides a strong recent server-based reference by using a Unitree Go2, RealSense D455 camera, LiDAR-L1, portable Wi-Fi, and an NVIDIA A100 server. For this project, a practical FYP prototype can therefore use a laptop or workstation for LLM/VLM inference, a front RGB camera for visual observation, and an optional NVIDIA Jetson Orin Nano if onboard execution is required. If the project later includes spatial mapping, then RGB-D hardware such as RealSense or Azure Kinect would be useful, following the direction of `VLMaps`, `HOV-SG`, `Uni-NaVid`, and `VLN-Zero`.
-
-The relationship between these papers and the project is summarized in Figure 2.3.
+The positioning of the reviewed papers around the proposed baseline is shown in Figure 2.3.
 
 **Figure 2.3: Positioning of related works around LM-Nav**
 
-![Figure 2.3: Positioning of related works around LM-Nav](drawio/chapter_2/figure_2_3_positioning_of_related_works_around_lm_nav.jpg)
+```text
+Advanced VLM/VLA Navigation
+NaVid, Uni-NaVid, NaVILA
+        |
+        v
+LM-Nav Baseline Architecture
+Language Understanding -> Visual Grounding -> Navigation Execution
+        |
+        v
+Low-Cost FYP Prototype
+RDK X5 + STM32 Motor Control + ESP32 Ultrasonic Sensing + USB Webcam
+        |
+        v
+Simple Indoor Action Set
+move_forward, turn_left, turn_right, stop, search
 
-## 2.11 Research Gap and Motivation
+Spatial grounding improvements: VLMaps, HOV-SG
+Navigation execution improvements: ViNT, NoMaD
+Prompt/action selection reference: VLMnav
+```
 
-The literature shows that language-guided robot navigation has improved significantly, but several gaps remain.
+## 2.12 Research Gap and Motivation
 
-First, prompt design is still under-analyzed in modular navigation pipelines. `LM-Nav` uses an LLM to extract landmarks, but the effect of different prompt structures is not the main focus of the paper. Since the landmark extraction output affects the entire pipeline, there is a need to study how prompt design changes the quality of extracted navigation information.
+The literature shows that language-guided robot navigation is an active research area, but several gaps remain for a low-cost FYP prototype.
 
-Second, landmark extraction alone is not sufficient for many natural language instructions. Human instructions often include spatial relations, route order, constraints, and ambiguous references. A prompt that only extracts object names may lose important information. This creates a need for structured prompt outputs that include landmarks, relations, sub-goals, constraints, and uncertainty.
+First, existing systems can perform language-guided navigation, but many require expensive hardware, complex mapping, large models, or server-level compute. These systems are valuable research contributions, but they are not directly suitable for a student prototype using an RDK X5 board, STM32-based motor control board, ESP32 ultrasonic sensing, webcam input, and simple motor control.
 
-Third, visual grounding remains a bottleneck. CLIP-based matching is useful, but it may not be enough for relation-based instructions or environments with multiple similar objects. Papers such as `VLMaps` and `HOV-SG` show that maps and scene graphs can improve grounding, but these methods are more complex. A practical project can begin by improving the text representation through prompt engineering before moving toward map-based grounding.
+Second, LM-Nav provides a strong modular baseline, but its language stage mainly extracts landmarks. Natural language instructions often include spatial relations and route information, such as "near the table", "turn left after the door", or "find the signboard". A low-cost prototype still needs to preserve this information, even if the first grounding module is simple.
 
-Fourth, navigation execution and prompt reasoning are often studied separately. Papers such as `ViNT` and `NoMaD` improve navigation policies, while papers such as `VLMnav` improve VLM-based decision making. A complete system must connect these components. Therefore, this project is motivated by the need to design prompt outputs that can be used by grounding and navigation modules.
+Third, many advanced methods improve spatial grounding or navigation execution, but they do not directly answer how structured prompt engineering can support a simple indoor robot. VLMaps and HOV-SG show the value of maps and scene graphs, while ViNT and NoMaD show stronger navigation execution. However, this project begins earlier in the pipeline by asking how natural language can be converted into structured, validated robot action information.
 
-Fifth, evaluation should include more than final navigation success. A prompt-engineered navigation system should also be evaluated based on landmark extraction accuracy, relation extraction accuracy, output format validity, grounding accuracy, action relevance, latency, and failure cases.
+Fourth, there is a need for a baseline prototype that future researchers can extend. A working RDK X5, ESP32, and STM32-controlled robot with webcam grounding, ultrasonic safety sensing, and simple actions provides a practical platform for later improvements such as RGB-D sensing, LiDAR, scene graph mapping, ViNT, NoMaD, or advanced VLM/VLA models.
 
-Based on these gaps, this project is motivated to study prompt engineering for an `LM-Nav`-style mobile robot navigation pipeline. The main research direction is to improve the extraction of structured navigation goals from natural language instructions and examine how those outputs can support visual grounding and navigation decision making.
-
-**Table 2.8: Research gap synthesis and project strategy**
+**Table 2.4: Research gap synthesis and project strategy**
 
 | Research Gap | Supporting Literature | Project Strategy |
 |---|---|---|
-| Prompt design is not deeply analyzed in modular navigation pipelines | `LM-Nav`, `VLMnav` | Compare baseline, structured, spatial-reasoning, and action-selection prompts |
-| Landmark extraction loses spatial relations and constraints | `LM-Nav`, `VLMaps`, `HOV-SG` | Extract landmarks, ordered sub-goals, relations, constraints, and uncertainty |
-| CLIP grounding may struggle with relation-based instructions | `LM-Nav`, `VLMaps`, `HOV-SG` | Test direct landmark grounding against prompt-expanded grounding |
-| Navigation execution is often separated from language reasoning | `ViNT`, `NoMaD`, `NaVILA` | Define output formats that can be passed to future navigation policies |
-| Evaluation often focuses on final success only | `VLMnav`, `VLN-Zero` | Evaluate extraction accuracy, output validity, grounding accuracy, action relevance, and failure cases |
+| Many language-guided navigation systems use costly or complex hardware | LM-Nav, HOV-SG, NaVILA, Uni-NaVid | Build a low-cost indoor prototype using RDK X5, STM32 motor control, ESP32 ultrasonic sensing, webcam, and DC motors |
+| Landmark extraction alone may lose spatial relations and route information | LM-Nav, VLMaps, HOV-SG | Use structured prompt output with target, landmarks, spatial relation, action goal, suggested action, and uncertainty |
+| VLM action selection needs validation before real robot execution | VLMnav | Check ESP32 ultrasonic status and restrict output to a small validated action set before sending commands to the STM32 robot control board |
+| Mapping and scene-graph systems are useful but complex | VLMaps, HOV-SG | Treat RGB-D mapping and scene graphs as future work |
+| Strong navigation policies are beyond the first prototype | ViNT, NoMaD | Start with simple action control and document future replacement options |
 
-The main research question can be stated as:
+Based on these gaps, the project is motivated by the following research direction:
 
-How can prompt engineering improve the extraction of structured navigation goals from natural language instructions for an `LM-Nav`-style mobile robot navigation pipeline?
+How can structured prompt engineering support visual grounding and simple action selection for a low-cost indoor mobile robot navigation prototype?
 
-## 2.12 Chapter Summary
+## 2.13 Chapter Summary
 
-This chapter reviewed research related to prompt engineering for mobile robot navigation. The review began by discussing mobile robot navigation, natural language interfaces, prompt engineering, and vision-language grounding. `LM-Nav` was then reviewed as the main baseline methodology because it combines GPT-3 for landmark extraction, CLIP for visual grounding, and ViNG for navigation execution.
+This chapter reviewed literature related to prompt engineering for mobile robot navigation. LM-Nav was identified as the main baseline because it provides a clear modular architecture of language understanding, visual grounding, and navigation execution. VLMnav was reviewed as the main prompt/action-selection reference because it frames navigation as a question-answering or action-choice task.
 
-The chapter also reviewed papers that improve different parts of the `LM-Nav` pipeline. `VLMaps` and `HOV-SG` improve spatial grounding through open-vocabulary maps and hierarchical 3D scene graphs. `ViNT` and `NoMaD` improve the navigation execution layer. `NaVid`, `Uni-NaVid`, and `NaVILA` represent newer VLM/VLA navigation directions. `VLMnav` provides an important prompt-engineering reference by formulating navigation as VLM question answering. `VLN-Zero` and `VLM-Nav` provide additional perspectives on zero-shot planning, memory, and mapless VLM navigation.
+The chapter also reviewed VLMaps and HOV-SG as spatial grounding improvements, ViNT and NoMaD as stronger navigation execution models, and NaVid, Uni-NaVid, and NaVILA as advanced VLM/VLA navigation directions. These works show the potential of language-guided navigation, but they also reveal limitations related to cost, sensing requirements, compute resources, and implementation complexity.
 
-The literature shows that `LM-Nav` is a suitable baseline for this project, but there is still a research gap in structured prompt engineering for navigation. The next chapter describes the methodology used to design, implement, and evaluate a prompt-engineered mobile robot navigation pipeline.
+The research gap is that there is a need for a low-cost indoor prototype that studies structured prompt engineering for simple mobile robot navigation. Chapter 3 explains how this project addresses the gap through a proposed RDK X5, ROS Robot Control Board V3.0 with STM32F103RCT6, ESP32 ultrasonic sensing module, USB webcam, and four-motor mobile robot system.
 
 ## REFERENCE
-
-Bhatt, N. P., Yang, Y., Siva, R., Samineni, P., Milan, D., Wang, Z., & Topcu, U. (2025). *VLN-Zero: Rapid exploration and cache-enabled neurosymbolic vision-language planning for zero-shot transfer in robot navigation*. arXiv. https://doi.org/10.48550/arXiv.2509.18592
 
 Cheng, A.-C., Ji, Y., Yang, Z., Gongye, Z., Zou, X., Kautz, J., Biyik, E., Yin, H., Liu, S., & Wang, X. (2025). NaVILA: Legged robot vision-language-action model for navigation. *Proceedings of Robotics: Science and Systems*. https://doi.org/10.15607/RSS.2025.XXI.018
 
 Goetting, D., Singh, H. G., & Loquercio, A. (2024). *End-to-end navigation with vision language models: Transforming spatial reasoning into question-answering*. arXiv. https://doi.org/10.48550/arXiv.2411.05755
 
 Huang, C., Mees, O., Zeng, A., & Burgard, W. (2023). Visual language maps for robot navigation. *Proceedings of the IEEE International Conference on Robotics and Automation (ICRA)*. https://vlmaps.github.io/
-
-Sarker, G. C., Azad, A. K. M., Rahman, S., & Hasan, M. M. (2026). VLM-Nav: Mapless UAV navigation using monocular vision driven by vision-language models. *PLOS One, 21*(4), e0345778. https://doi.org/10.1371/journal.pone.0345778
 
 Shah, D., Osinski, B., Ichter, B., & Levine, S. (2023a). LM-Nav: Robotic navigation with large pre-trained models of language, vision, and action. *Proceedings of the 6th Conference on Robot Learning, Proceedings of Machine Learning Research, 205*, 492-504. https://proceedings.mlr.press/v205/shah23b.html
 

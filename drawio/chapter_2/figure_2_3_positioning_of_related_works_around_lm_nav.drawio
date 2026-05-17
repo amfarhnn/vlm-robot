@@ -1,34 +1,47 @@
-<mxfile host="Electron" agent="Codex">
+<?xml version='1.0' encoding='UTF-8'?>
+<mxfile host="app.diagrams.net" modified="2026-05-09T00:00:00.000Z" agent="Codex" version="24.7.17">
   <diagram id="figure_2_3_positioning_of_related_works_around_lm_nav" name="Figure 2.3: Positioning of related works around LM-Nav">
-    <mxGraphModel dx="1488" dy="885" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1600" pageHeight="1000" background="#ffffff" math="0" shadow="0">
+    <mxGraphModel dx="1600" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1200" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#182E3E;strokeColor=#FFFFFF;fontSize=14;labelBackgroundColor=none;fontColor=#FFFFFF;" value="VLM/VLA Navigation&#xa;NaVid, Uni-NaVid, NaVILA" vertex="1">
-          <mxGeometry height="90" width="360" x="550" y="60" as="geometry" />
+        <mxCell id="2" value="Advanced VLM/VLA Navigation&#10;NaVid, Uni-NaVid, NaVILA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="560" y="60" width="420" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#a20025;strokeColor=#6F0000;fontSize=14;labelBackgroundColor=none;fontColor=#ffffff;" value="Spatial Grounding&#xa;VLMaps, HOV-SG" vertex="1">
-          <mxGeometry height="90" width="300" x="120" y="300" as="geometry" />
+        <mxCell id="3" value="Spatial Grounding Improvements&#10;VLMaps, HOV-SG" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="80" y="300" width="360" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;strokeColor=#005700;fontStyle=1;fontSize=15;labelBackgroundColor=none;fontColor=#ffffff;" value="LM-Nav Baseline&#xa;GPT-3 + CLIP + ViNG" vertex="1">
-          <mxGeometry height="90" width="360" x="550" y="300" as="geometry" />
+        <mxCell id="4" value="LM-Nav Baseline Architecture&#10;Language -&gt; Visual Grounding -&gt; Execution" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="560" y="300" width="420" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6a00ff;strokeColor=#3700CC;fontSize=14;labelBackgroundColor=none;fontColor=#ffffff;" value="Navigation Execution&#xa;ViNT, NoMaD" vertex="1">
-          <mxGeometry height="90" width="300" x="1040" y="300" as="geometry" />
+        <mxCell id="5" value="Navigation Execution Improvements&#10;ViNT, NoMaD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1110" y="300" width="360" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#76608a;strokeColor=#432D57;fontSize=13;labelBackgroundColor=none;fontColor=#ffffff;" value="Prompt-Based Action Selection&#xa;VLMnav" vertex="1">
-          <mxGeometry height="90" width="360" x="550" y="540" as="geometry" />
+        <mxCell id="6" value="Prompt-Based Action Selection&#10;VLMnav" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="560" y="520" width="420" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="7" edge="1" parent="1" source="3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;labelBackgroundColor=none;strokeColor=#23445D;fontColor=default;" target="4">
+        <mxCell id="7" value="Low-Cost FYP Prototype&#10;RDK X5 + STM32 Motor Control + ESP32 Ultrasonic Sensing + USB Webcam" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="560" y="710" width="420" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="8" value="Simple Indoor Action Set&#10;move_forward, turn_left, turn_right, stop, search" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="560" y="920" width="420" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="3" target="4">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="8" edge="1" parent="1" source="4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;labelBackgroundColor=none;strokeColor=#23445D;fontColor=default;" target="5">
+        <mxCell id="10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="4" target="5">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="9" edge="1" parent="1" source="2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;labelBackgroundColor=none;strokeColor=#23445D;fontColor=default;" target="4">
+        <mxCell id="11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="2" target="4">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="10" edge="1" parent="1" source="4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;labelBackgroundColor=none;strokeColor=#23445D;fontColor=default;" target="6">
+        <mxCell id="12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="4" target="6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="6" target="7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="7" target="8">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

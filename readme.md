@@ -90,7 +90,19 @@ The reviewed papers do not all use the same hardware. Some are real-robot system
 | `VLMnav` | Habitat/ObjectNav/GOAT-style simulated embodied agent | VLM inference through API/model calls; no physical robot board reported | RGB-D image, pose, voxel map, action-choice visual prompt |
 | `VLM-Nav` | AirSim multirotor UAV simulation | Simulation PC / AirSim environment; physical flight controller board not reported | Monocular RGB image, zero-shot depth estimation, left/right distance sensors, relative heading angle |
 
-For this FYP, the most realistic hardware direction is an RGB-camera-based mobile robot or a simulator/image-based setup. If a physical prototype is required, a practical setup is a wheeled mobile robot base, a front-facing USB/RGB camera, a laptop or workstation for LLM/VLM inference, and optionally an NVIDIA Jetson Orin Nano if onboard visual navigation is needed. RGB-D sensors such as RealSense or Azure Kinect can be considered later if the project expands toward spatial mapping.
+For this FYP, the current proposed hardware is a low-cost indoor mobile robot prototype using an RDK X5 development board with 8GB RAM as the onboard computing unit, a ROS Robot Control Board V3.0 with STM32F103RCT6 for low-level motor control, an ESP32 for reading four ultrasonic sensors, an unbranded 1080p USB webcam for RGB visual input, four DC motors, a chassis, and four 18650 batteries. In the proposed architecture, the RDK X5 handles prompt processing, webcam capture, visual grounding, and high-level decision logic; the ESP32 reports obstacle or distance status; and the STM32 board executes validated motor commands. RGB-D sensors such as RealSense or Azure Kinect, LiDAR, scene-graph mapping, and stronger learned navigation policies can be considered later if the project expands toward spatial mapping or more robust navigation.
+
+## Baseline Implementation Code
+
+The starter implementation files are organized by hardware role:
+
+| Path | Purpose |
+|---|---|
+| `src/rdk_x5/robot_navigation_controller.py` | Baseline RDK X5 Python controller for prompt parsing, webcam capture, ESP32 status reading, action validation, STM32 command sending, and logging. |
+| `src/rdk_x5/config.example.json` | Example serial-port, webcam, threshold, and logging configuration. |
+| `firmware/esp32_ultrasonic_hub/esp32_ultrasonic_hub.ino` | ESP32 firmware for reading four ultrasonic sensors and sending JSON distance/status output. |
+| `firmware/stm32_motor_controller/stm32_motor_controller_arduino.ino` | Pin-configurable STM32 motor-command template if custom firmware is required. |
+| `docs/circuit_wiring_guide.md` | Text-form circuit and wiring guide for the proposed hardware architecture. |
 
 ## Methodology Notes
 

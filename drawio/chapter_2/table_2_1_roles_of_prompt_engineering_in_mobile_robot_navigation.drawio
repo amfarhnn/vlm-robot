@@ -1,74 +1,84 @@
-<mxfile host="Electron" agent="Codex">
+<?xml version='1.0' encoding='UTF-8'?>
+<mxfile host="app.diagrams.net" modified="2026-05-09T00:00:00.000Z" agent="Codex" version="24.7.17">
   <diagram id="table_2_1_roles_of_prompt_engineering_in_mobile_robot_navigation" name="Table 2.1: Roles of prompt engineering in mobile robot navigation">
-    <mxGraphModel dx="1131" dy="673" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="800" background="#ffffff" math="0" shadow="1">
+    <mxGraphModel dx="1600" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1238" pageHeight="800" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2CC8F;strokeColor=#E07A5F;fontStyle=1;fontSize=16;labelBackgroundColor=none;fontColor=#393C56;" value="Table 2.1: Roles of prompt engineering in mobile robot navigation" vertex="1">
-          <mxGeometry height="58" width="1065" x="40" y="40" as="geometry" />
+        <mxCell id="2" value="Table 2.1: Roles of prompt engineering in mobile robot navigation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="1158" height="58" as="geometry" />
         </mxCell>
-        <mxCell id="3" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fillColor=#f0a30a;strokeColor=#BD7000;fontStyle=1;fontSize=12;labelBackgroundColor=none;fontColor=#000000;strokeWidth=1;" value="Role" vertex="1">
-          <mxGeometry height="46" width="319" x="40" y="116" as="geometry" />
+        <mxCell id="3" value="Role" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="40" y="116" width="300" height="46" as="geometry" />
         </mxCell>
-        <mxCell id="4" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fillColor=#e3c800;strokeColor=#B09500;fontStyle=1;fontSize=12;labelBackgroundColor=none;fontColor=#000000;" value="Example Output" vertex="1">
-          <mxGeometry height="46" width="338" x="359" y="116" as="geometry" />
+        <mxCell id="4" value="Example Output" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="340" y="116" width="337" height="46" as="geometry" />
         </mxCell>
-        <mxCell id="5" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fillColor=#647687;strokeColor=#314354;fontStyle=1;fontSize=12;labelBackgroundColor=none;fontColor=#ffffff;" value="Purpose" vertex="1">
-          <mxGeometry height="46" width="408" x="697" y="116" as="geometry" />
+        <mxCell id="5" value="Purpose in This FYP" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="677" y="116" width="521" height="46" as="geometry" />
         </mxCell>
-        <mxCell id="6" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;strokeColor=#BD7000;fontSize=11;fillColor=#f0a30a;labelBackgroundColor=none;fontColor=#000000;strokeWidth=1;" value="Landmark extraction" vertex="1">
-          <mxGeometry height="40" width="319" x="40" y="162" as="geometry" />
+        <mxCell id="6" value="Landmark extraction" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="40" y="162" width="300" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="7" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;strokeColor=#B09500;fontSize=11;fillColor=#e3c800;labelBackgroundColor=none;fontColor=#000000;" value="`chair`, `table`, `door`" vertex="1">
-          <mxGeometry height="40" width="338" x="359" y="162" as="geometry" />
+        <mxCell id="7" value="`door`, `chair`, `table`, `signboard`" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="340" y="162" width="337" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="8" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;strokeColor=#314354;fontSize=11;fillColor=#647687;labelBackgroundColor=none;fontColor=#ffffff;" value="Identify important objects or places" vertex="1">
-          <mxGeometry height="40" width="408" x="697" y="162" as="geometry" />
+        <mxCell id="8" value="Identify objects or places mentioned by the user" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="677" y="162" width="521" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="9" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;strokeColor=#BD7000;fontSize=11;fillColor=#f0a30a;labelBackgroundColor=none;fontColor=#000000;strokeWidth=1;" value="Route decomposition" vertex="1">
-          <mxGeometry height="40" width="319" x="40" y="202" as="geometry" />
+        <mxCell id="9" value="Target selection" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="40" y="202" width="300" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="10" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;strokeColor=#B09500;fontSize=11;fillColor=#e3c800;labelBackgroundColor=none;fontColor=#000000;" value="`door -&amp;gt; hallway -&amp;gt; window`" vertex="1">
-          <mxGeometry height="40" width="338" x="359" y="202" as="geometry" />
+        <mxCell id="10" value="`target: door`" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="340" y="202" width="337" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="11" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;strokeColor=#314354;fontSize=11;fillColor=#647687;labelBackgroundColor=none;fontColor=#ffffff;" value="Convert instruction into ordered sub-goals" vertex="1">
-          <mxGeometry height="40" width="408" x="697" y="202" as="geometry" />
+        <mxCell id="11" value="Decide the main navigation goal" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="677" y="202" width="521" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="12" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;strokeColor=#BD7000;fontSize=11;fillColor=#f0a30a;labelBackgroundColor=none;fontColor=#000000;strokeWidth=1;" value="Spatial relation extraction" vertex="1">
-          <mxGeometry height="40" width="319" x="40" y="242" as="geometry" />
+        <mxCell id="12" value="Spatial relation extraction" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="40" y="242" width="300" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="13" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;strokeColor=#B09500;fontSize=11;fillColor=#e3c800;labelBackgroundColor=none;fontColor=#000000;" value="`chair near table`" vertex="1">
-          <mxGeometry height="40" width="338" x="359" y="242" as="geometry" />
+        <mxCell id="13" value="`chair near table`" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="340" y="242" width="337" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="14" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;strokeColor=#314354;fontSize=11;fillColor=#647687;labelBackgroundColor=none;fontColor=#ffffff;" value="Preserve relation information" vertex="1">
-          <mxGeometry height="40" width="408" x="697" y="242" as="geometry" />
+        <mxCell id="14" value="Preserve relations that affect grounding" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="677" y="242" width="521" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="15" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;strokeColor=#BD7000;fontSize=11;fillColor=#f0a30a;labelBackgroundColor=none;fontColor=#000000;strokeWidth=1;" value="Constraint extraction" vertex="1">
-          <mxGeometry height="40" width="319" x="40" y="282" as="geometry" />
+        <mxCell id="15" value="Route or action interpretation" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="40" y="282" width="300" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="16" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;strokeColor=#B09500;fontSize=11;fillColor=#e3c800;labelBackgroundColor=none;fontColor=#000000;" value="`avoid crowded area`" vertex="1">
-          <mxGeometry height="40" width="338" x="359" y="282" as="geometry" />
+        <mxCell id="16" value="`move_forward`, `turn_left`" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="340" y="282" width="337" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="17" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;strokeColor=#314354;fontSize=11;fillColor=#647687;labelBackgroundColor=none;fontColor=#ffffff;" value="Identify safety or movement restrictions" vertex="1">
-          <mxGeometry height="40" width="408" x="697" y="282" as="geometry" />
+        <mxCell id="17" value="Convert instruction meaning into simple action options" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="677" y="282" width="521" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="18" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;strokeColor=#BD7000;fontSize=11;fillColor=#f0a30a;labelBackgroundColor=none;fontColor=#000000;strokeWidth=1;" value="Visual grounding query generation" vertex="1">
-          <mxGeometry height="40" width="319" x="40" y="322" as="geometry" />
+        <mxCell id="18" value="Structured output formatting" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="40" y="322" width="300" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="19" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;strokeColor=#B09500;fontSize=11;fillColor=#e3c800;labelBackgroundColor=none;fontColor=#000000;" value="`chair near a wooden table`" vertex="1">
-          <mxGeometry height="40" width="338" x="359" y="322" as="geometry" />
+        <mxCell id="19" value="JSON-style response" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="340" y="322" width="337" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="20" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;strokeColor=#314354;fontSize=11;fillColor=#647687;labelBackgroundColor=none;fontColor=#ffffff;" value="Improve image-text matching" vertex="1">
-          <mxGeometry height="40" width="408" x="697" y="322" as="geometry" />
+        <mxCell id="20" value="Allow Python code on the RDK X5 board to parse the result" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="677" y="322" width="521" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="21" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;strokeColor=#BD7000;fontSize=11;fillColor=#f0a30a;labelBackgroundColor=none;fontColor=#000000;strokeWidth=1;" value="Action selection" vertex="1">
-          <mxGeometry height="40" width="319" x="40" y="362" as="geometry" />
+        <mxCell id="21" value="Uncertainty handling" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="40" y="362" width="300" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="22" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;strokeColor=#B09500;fontSize=11;fillColor=#e3c800;labelBackgroundColor=none;fontColor=#000000;" value="`turn left`, `move forward`, `stop`" vertex="1">
-          <mxGeometry height="40" width="338" x="359" y="362" as="geometry" />
+        <mxCell id="22" value="`uncertainty: high`" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="340" y="362" width="337" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="23" parent="1" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;strokeColor=#314354;fontSize=11;fillColor=#647687;labelBackgroundColor=none;fontColor=#ffffff;" value="Support direct navigation decisions" vertex="1">
-          <mxGeometry height="40" width="408" x="697" y="362" as="geometry" />
+        <mxCell id="23" value="Prevent unsafe execution when the model is unsure" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="677" y="362" width="521" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="24" value="Visual grounding query generation" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="40" y="402" width="300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="25" value="`door in indoor corridor`" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="340" y="402" width="337" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="26" value="Improve matching between text and webcam image" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="677" y="402" width="521" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

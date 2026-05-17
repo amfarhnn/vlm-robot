@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mxfile host="app.diagrams.net" modified="2026-05-09T00:00:00.000Z" agent="Codex" version="24.7.17">
+  <diagram id="table_3_7_software_model_and_platform_requirements" name="Table 3.7: Software, Model, and Platform Requirements">
+    <mxGraphModel dx="1600" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1585" pageHeight="800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" value="Table 3.7: Software, Model, and Platform Requirements" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="1505" height="58" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="Item" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="40" y="116" width="221" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="4" value="Purpose" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="261" y="116" width="712" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="5" value="Planned Tool or Example" style="shape=rectangle;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;spacing=8;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="973" y="116" width="572" height="46" as="geometry" />
+        </mxCell>
+        <mxCell id="6" value="Operating environment" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="40" y="162" width="221" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="7" value="Run the robot software on RDK X5" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="261" y="162" width="712" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8" value="Linux-based RDK X5 environment" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="973" y="162" width="572" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="9" value="Programming language" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="40" y="202" width="221" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="10" value="Implement prompt processing, camera capture, decision logic, and logging" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="261" y="202" width="712" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="11" value="Python" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="973" y="202" width="572" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="12" value="Webcam processing" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="40" y="242" width="221" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="13" value="Capture and process RGB frames" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="261" y="242" width="712" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="14" value="OpenCV" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="973" y="242" width="572" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="15" value="Prompt processing model" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="40" y="282" width="221" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="16" value="Extract structured navigation information" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="261" y="282" width="712" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="17" value="GPT-style model, local LLM, or available API model" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="973" y="282" width="572" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="18" value="Visual grounding model" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="40" y="322" width="221" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="19" value="Match text target with webcam image or answer visual questions" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="261" y="322" width="712" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="20" value="CLIP, OpenCLIP, or VLM depending on available compute" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="973" y="322" width="572" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="21" value="Controller communication" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="40" y="362" width="221" height="53" as="geometry" />
+        </mxCell>
+        <mxCell id="22" value="Send obstacle status from ESP32 to RDK X5 and motor commands from RDK X5 to STM32 robot control board" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="261" y="362" width="712" height="53" as="geometry" />
+        </mxCell>
+        <mxCell id="23" value="Serial or supported robot control interface" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="973" y="362" width="572" height="53" as="geometry" />
+        </mxCell>
+        <mxCell id="24" value="ESP32 firmware" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="40" y="415" width="221" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="25" value="Read four ultrasonic sensors and report distance or obstacle status" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="261" y="415" width="712" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="26" value="Arduino IDE, PlatformIO, or ESP-IDF depending on development preference" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="973" y="415" width="572" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="27" value="STM32 robot control firmware" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="40" y="455" width="221" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="28" value="Receive motor commands and control the four DC motors" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="261" y="455" width="712" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="29" value="ROS Robot Control Board V3.0 firmware or compatible development workflow" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#f8f9fa;" vertex="1" parent="1">
+          <mxGeometry x="973" y="455" width="572" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="30" value="Result storage" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="40" y="495" width="221" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="31" value="Record output and evaluation data" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="261" y="495" width="712" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="32" value="CSV, JSON, Markdown table, or spreadsheet" style="shape=rectangle;whiteSpace=wrap;html=1;align=left;verticalAlign=middle;spacing=8;strokeColor=#666666;fontSize=11;fillColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="973" y="495" width="572" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

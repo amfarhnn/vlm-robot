@@ -1,40 +1,41 @@
-<mxfile host="Electron" agent="Codex">
+<?xml version='1.0' encoding='UTF-8'?>
+<mxfile host="app.diagrams.net" modified="2026-05-09T00:00:00.000Z" agent="Codex" version="24.7.17">
   <diagram id="figure_2_1_general_language_guided_navigation_process" name="Figure 2.1: General language-guided navigation process">
-    <mxGraphModel dx="1178" dy="701" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1169" pageHeight="1654" background="#ffffff" math="0" shadow="0">
+    <mxGraphModel dx="1600" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#09555B;strokeColor=#BAC8D3;fontSize=14;fontColor=#EEEEEE;labelBackgroundColor=none;" value="Natural Language Instruction" vertex="1">
-          <mxGeometry height="58" width="300" x="340" y="40" as="geometry" />
+        <mxCell id="2" value="Natural Language Instruction" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="340" y="40" width="300" height="58" as="geometry" />
         </mxCell>
-        <mxCell id="3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6a00ff;strokeColor=#3700CC;fontSize=14;fontColor=#ffffff;labelBackgroundColor=none;" value="Language Understanding" vertex="1">
-          <mxGeometry height="58" width="300" x="340" y="134" as="geometry" />
+        <mxCell id="3" value="Prompt Engineering and Language Understanding" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="340" y="134" width="300" height="63" as="geometry" />
         </mxCell>
-        <mxCell id="4" edge="1" parent="1" source="2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;" target="3">
+        <mxCell id="4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="2" target="3">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#008a00;strokeColor=#005700;fontSize=14;labelBackgroundColor=none;fontColor=#ffffff;" value="Landmark, Goal, or Plan Representation" vertex="1">
-          <mxGeometry height="63" width="300" x="340" y="228" as="geometry" />
+        <mxCell id="5" value="Structured Navigation Information" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="340" y="233" width="300" height="63" as="geometry" />
         </mxCell>
-        <mxCell id="6" edge="1" parent="1" source="3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;" target="5">
+        <mxCell id="6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="3" target="5">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#a20025;strokeColor=#6F0000;fontSize=14;labelBackgroundColor=none;fontColor=#ffffff;" value="Vision-Language Grounding" vertex="1">
-          <mxGeometry height="58" width="300" x="340" y="327" as="geometry" />
+        <mxCell id="7" value="Visual Grounding with Robot Camera" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="340" y="332" width="300" height="63" as="geometry" />
         </mxCell>
-        <mxCell id="8" edge="1" parent="1" source="5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;" target="7">
+        <mxCell id="8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="5" target="7">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#76608a;strokeColor=#432D57;fontSize=14;labelBackgroundColor=none;fontColor=#ffffff;" value="Navigation Goal or Action" vertex="1">
-          <mxGeometry height="58" width="300" x="340" y="421" as="geometry" />
+        <mxCell id="9" value="Action or Goal Selection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="340" y="431" width="300" height="58" as="geometry" />
         </mxCell>
-        <mxCell id="10" edge="1" parent="1" source="7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;" target="9">
+        <mxCell id="10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="7" target="9">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3c800;strokeColor=#B09500;fontSize=14;labelBackgroundColor=none;fontColor=#000000;" value="Robot Motion Execution" vertex="1">
-          <mxGeometry height="58" width="300" x="340" y="515" as="geometry" />
+        <mxCell id="11" value="Robot Movement and Feedback" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="340" y="525" width="300" height="58" as="geometry" />
         </mxCell>
-        <mxCell id="12" edge="1" parent="1" source="9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;labelBackgroundColor=none;strokeColor=#0B4D6A;fontColor=default;" target="11">
+        <mxCell id="12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="9" target="11">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>

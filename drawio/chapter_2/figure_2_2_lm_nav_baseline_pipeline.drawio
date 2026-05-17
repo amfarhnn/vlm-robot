@@ -1,40 +1,35 @@
-<mxfile host="Electron" agent="Codex">
+<?xml version='1.0' encoding='UTF-8'?>
+<mxfile host="app.diagrams.net" modified="2026-05-09T00:00:00.000Z" agent="Codex" version="24.7.17">
   <diagram id="figure_2_2_lm_nav_baseline_pipeline" name="Figure 2.2: LM-Nav baseline pipeline">
-    <mxGraphModel dx="2357" dy="1402" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" background="none" math="0" shadow="0" adaptiveColors="auto">
+    <mxGraphModel dx="1600" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#a0522d;strokeColor=#6D1F00;fontSize=14;fontColor=#ffffff;" value="Language Instruction" vertex="1">
-          <mxGeometry height="58" width="300" x="426" y="384" as="geometry" />
+        <mxCell id="2" value="User Language Instruction" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="340" y="40" width="300" height="58" as="geometry" />
         </mxCell>
-        <mxCell id="3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#76608a;strokeColor=#432D57;fontSize=14;fontColor=#ffffff;" value="GPT-3 Landmark Extraction" vertex="1">
-          <mxGeometry height="58" width="300" x="426" y="478" as="geometry" />
+        <mxCell id="3" value="LLM Landmark Extraction" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="340" y="134" width="300" height="58" as="geometry" />
         </mxCell>
-        <mxCell id="4" edge="1" parent="1" source="2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;fillColor=#a0522d;strokeColor=#6D1F00;" target="3">
+        <mxCell id="4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="2" target="3">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6d8764;strokeColor=#3A5431;fontSize=14;fontColor=#ffffff;" value="Landmark Sequence" vertex="1">
-          <mxGeometry height="58" width="300" x="426" y="572" as="geometry" />
+        <mxCell id="5" value="CLIP Visual Grounding" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="340" y="228" width="300" height="58" as="geometry" />
         </mxCell>
-        <mxCell id="6" edge="1" parent="1" source="3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;fillColor=#a0522d;strokeColor=#6D1F00;" target="5">
+        <mxCell id="6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="3" target="5">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e3c800;strokeColor=#B09500;fontSize=14;fontColor=#000000;" value="CLIP Visual Grounding" vertex="1">
-          <mxGeometry height="58" width="300" x="426" y="666" as="geometry" />
+        <mxCell id="7" value="Visual Navigation Model" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="340" y="322" width="300" height="58" as="geometry" />
         </mxCell>
-        <mxCell id="8" edge="1" parent="1" source="5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;fillColor=#a0522d;strokeColor=#6D1F00;" target="7">
+        <mxCell id="8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="5" target="7">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fa6800;strokeColor=#C73500;fontSize=14;fontColor=#000000;" value="Selected Visual Goal" vertex="1">
-          <mxGeometry height="58" width="300" x="426" y="760" as="geometry" />
+        <mxCell id="9" value="Robot Navigation Toward Goal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="340" y="416" width="300" height="58" as="geometry" />
         </mxCell>
-        <mxCell id="10" edge="1" parent="1" source="7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;fillColor=#a0522d;strokeColor=#6D1F00;" target="9">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#a0522d;strokeColor=#6D1F00;fontSize=14;fontColor=#ffffff;" value="ViNG Navigation Execution" vertex="1">
-          <mxGeometry height="58" width="300" x="426" y="854" as="geometry" />
-        </mxCell>
-        <mxCell id="12" edge="1" parent="1" source="9" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;fillColor=#a0522d;strokeColor=#6D1F00;" target="11">
+        <mxCell id="10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeWidth=2;" edge="1" parent="1" source="7" target="9">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
